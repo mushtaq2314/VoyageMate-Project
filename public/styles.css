@@ -1,0 +1,40 @@
+/*
+*
+* ==========================================
+* CUSTOM UTIL CLASSES
+* ==========================================
+*
+*/
+.bg-cover {
+    background-size: cover !important;
+}
+
+
+
+/*
+*
+* ==========================================
+* FOR DEMO PURPOSES
+* ==========================================
+*
+*/
+
+body {
+    min-height: 100vh;
+}
+#page-content {
+    flex: 1 0 auto;
+  }
+  .index{
+  font-size: 12px;
+  color: #000;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: rgba(255, 255, 255, .9);
+  min-height: 380px;
+  margin-top: 20px;
+  display: block;
+  float: left;
+  width: 526px;
+  }
