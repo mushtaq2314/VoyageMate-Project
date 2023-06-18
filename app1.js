@@ -3,7 +3,11 @@ var bcrypt=require('bcryptjs');
 var salt=bcrypt.genSaltSync(10);
 var cookieParser=require('cookie-parser');
 var {isEmail}=require('validator');
-
+const session = require('express-session');
+const passport = require("passport");
+const passportLocalMongoose = require("passport-local-mongoose");
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const findOrCreate = require('mongoose-findorcreate');
 
 app=express()
 users=[]
@@ -15,16 +19,25 @@ app.use(cookieParser());
 bodyParser=require('body-parser');
 app.use(bodyParser.urlencoded({extended: true}));
 const mangoose=require("mongoose");
-mangoose.connect("mongodb+srv://Md_Mushtaq:mushtaq2314@cluster0.45kcblp.mongodb.net/irctc").then(()=>{
+mangoose.connect("mongodb+srv://Gopi:Gopino.1@cluster0.luogiyd.mongodb.net/test").then(()=>{
     console.log("connected");
 });
 const Schema=new mangoose.Schema({
 name:String,
-mail:{type:String,
-    required:[true,"Enter a Email"],
-validate:[isEmail,"Enter a Valid Email"]},
-password:String
+mail:String,
+password:String,
+googleId:String
 })
+Schema.plugin(passportLocalMongoose);
+Schema.plugin(findOrCreate);
+app.use(session({
+  secret: "Our little secret.",
+  resave: false,
+  saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
 const maxAge=3*24*60*60;;
 const createTOken=(id)=>{
     console.log("12334567");
@@ -33,7 +46,31 @@ const createTOken=(id)=>{
 const Model=mangoose.model("Model",Schema);
 const jwt=require('jsonwebtoken');
 const { spawn } = require('child_process');
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
 
+passport.deserializeUser(function(id, done) {
+  Model.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
+var ids='';
+passport.use(new GoogleStrategy({
+    clientID: "790571889832-g2ne0e7m6vr2tl9b0b9c1du2ef6vmg17.apps.googleusercontent.com",
+    clientSecret: "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",
+    callbackURL: "http://localhost:3000/auth/google/secrets",
+    userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
+  },
+  function(accessToken, refreshToken, profile, cb) {
+    console.log(profile);
+    ids=profile;
+
+    Model.findOrCreate({ googleId: profile.id }, function (err, user) {
+      return cb(err, user);
+    });
+  }
+));
 //Mushtaq
 // app.use(express.urlencoded())
 
@@ -57,6 +94,17 @@ app.get("/contact",function(request,response){
     response.render("contact");
 })
 /////////////////////////////////////
+app.get("/auth/google",
+  passport.authenticate('google', { scope: ["profile"] })
+);
+
+app.get("/auth/google/secrets",
+  passport.authenticate('google', { failureRedirect: "/login" }),
+  function(req, res) {
+    // Successful authentication, redirect to secrets.
+    res.redirect("/secrets");
+  });
+
 app.get("/profile",function(request,response){
     response.render("profile");
 })
@@ -114,6 +162,20 @@ if (response.data.data.message==="Please enter a valid train number"){
 //   res.send('invalid train number');
 })
 ///////////////////////////////////////////////////////////////////////////////////////////
+//google auth
+app.get("/secrets", function(req, res){
+  Model.find({"secret": {$ne: null}}, function(err, foundUsers){
+    if (err){
+      console.log(err);
+    } else {
+      if (foundUsers) {
+        console.log(foundUsers)
+        console.log(ids)
+        res.render("dashboard");
+      }
+    }
+  });
+});
 app.post('/status2',function(req,res){
     // res.render('status');
     console.log("clicked");
