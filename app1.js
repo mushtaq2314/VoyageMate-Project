@@ -32,6 +32,7 @@ const createTOken=(id)=>{
 }
 const Model=mangoose.model("Model",Schema);
 const jwt=require('jsonwebtoken');
+const { spawn } = require('child_process');
 
 //Mushtaq
 // app.use(express.urlencoded())
@@ -1893,4 +1894,12 @@ app.get("/logout",function(req,res){
     res.redirect('/');
 })
 
-//Hello
+//Python Part
+const spawner = require('child_process').spawn;
+
+const data_to_pass_in = 'send this data to python file';
+const python_process = spawner('python',['model.py',JSON.stringify(data_to_pass_in)]);
+
+python_process.stdout.on('recieved',(recieved)=>{
+  console.log('Data recieved from py file is: ',recieved.toString());
+});
