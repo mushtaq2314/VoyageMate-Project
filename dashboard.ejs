@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>IRCTC</title>
+	<link rel="Shortcut Icon" type="x-icon" href="train.ico">
+	<!-- <link rel="stylesheet" href="style_home.css" /> -->
+	<!-- Font Awesome Cdn Link -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+	<style>
+		@import url('https://fonts.googleapis.com/css?family=Poppins: 200,300,400,500,600,700,800,900&display=swap');
+
+		* {
+			margin: 0;
+			padding: 0;
+			outline: none;
+			border: none;
+			text-decoration: none;
+			box-sizing: border-box;
+			font-family: "Poppins", sans-serif;
+		}
+
+		/* body{ 
+	 background: #f6f5f7; 
+}*/
+		.container {
+			display: flex;
+			position: fixed;
+		}
+
+		nav {
+			position: relative;
+			top: 0;
+			bottom: 0;
+			height: 100vh;
+			left: 0;
+			background: #ffffff;
+			width: 250px;
+			overflow: hidden;
+			box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+		}
+
+		.logo {
+			text-align: center;
+			display: flex;
+			margin: 10px 0 0 10px;
+		}
+
+		.logo span {
+			font-weight: bold;
+			font-size: 18px;
+			text-transform: uppercase;
+			margin-top: 13px;
+		}
+
+		.container a {
+			border-bottom: 0.5px solid blueviolet;
+			position: relative;
+			color: blueviolet;
+			font-size: 14px;
+			display: table;
+			width: 288px;
+			padding: 10px;
+			animation: animate 0.35s;
+		}
+
+		@keyframes animate {
+			from {
+				transform: rotateX(90deg);
+			}
+
+			to {
+				transform: rotateX(0deg);
+			}
+		}
+
+		ab {
+			position: relative;
+			color: #333;
+			background-color: white;
+			font-size: 14px;
+			display: table;
+			width: 288px;
+			padding: 10px;
+			cursor: context-menu;
+			;
+		}
+
+		.fa {
+			padding: 20px;
+			font-size: 30px;
+			width: 50px;
+			text-align: center;
+			text-decoration: none;
+		}
+
+		nav .fas {
+			position: relative;
+			width: 70px;
+			height: 40px;
+			top: 10px;
+			font-size: 20px;
+			text-align: center;
+		}
+
+		.nav-item {
+			position: relative;
+			top: 8px;
+			margin-left: 10px;
+		}
+
+		a:hover {
+			background: blueviolet;
+			color: white;
+			transition: 0.35s ease;
+		}
+
+		.logout {
+			position: absolute;
+			bottom: 0px;
+		}
+
+		.container2 {
+			position: absolute;
+			left: 280px;
+			background-color: white;
+			color: black;
+			width: 80%;
+			height: 100%;
+			text-align: center;
+			/* border: 20px solid aqua; */
+		}
+
+		.card {
+			background-color: aqua;
+			/* color: white; */
+			position: relative;
+			left: 30px;
+			top: 20px;
+			width: 350px;
+			height: 420px;
+			padding: 20px;
+			border-radius: 20px;
+		}
+
+		.card:hover {
+			cursor: pointer;
+			background-color: #48b5b5;
+
+		}
+
+		.profile {
+			position: relative;
+			left: 950px;
+			background-color: aqua;
+			/* color: white; */
+			width: 250px;
+			text-align: start;
+			height: 60px;
+			border-radius: 10px;
+			top: -30px;
+			padding: 5px;
+		}
+
+		.profile p {
+			font-weight: 500;
+			position: relative;
+			left: 10px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<nav>
+			<ul>
+				<li style="width: 100%;margin-top: -10px;margin-left: -10px;">
+					<ab href="/index" class="logo">
+						<!-- <img src="train.ico" alt="" > -->
+						<span class="nav-item"
+							style="color: blueviolet;font-size: 35px;padding-left: 40px;margin-top:-5px ;padding-bottom: 5px;">IRCTC</span>
+					</ab>
+				</li>
+				<li><a href="/dashboard" style="background-color: blueviolet; color: white;">
+						<i class="fas fa-home"></i>
+						<span class="nav-item">Home</span>
+					</a></li>
+				<li><a href="/profile">
+						<i class="fas fa-user"></i>
+						<span class="nav-item">Profile</span>
+					</a></li>
+				<li><a href="/status2">
+						<i class="fas fa-map-marker-alt"></i>
+						<span class="nav-item">Live Running Status</span>
+					</a></li>
+				<li><a href="/book">
+						<i class="fas fa-ticket"></i>
+						<span class="nav-item">Book Ticket</span>
+					</a></li>
+				<li><a href="/pnr">
+						<i class="fas fa-train"></i>
+						<span class="nav-item">Check PNR status</span>
+					</a></li>
+				<li><a href="/history">
+						<i class="fas fa-clock"></i>
+						<span class="nav-item">Travel History</span>
+					</a></li>
+				<li><a href="/help">
+						<i class="fas fa-question-circle"></i>
+						<span class="nav-item">Help</span>
+					</a></li>
+				<li><a href="/" class="logout">
+						<i class="fas fa-sign-out-alt"></i>
+						<span class="nav-item">Logout</span>
+					</a></li>
+			</ul>
+		</nav>
+	</div>
+	<div class="container2">
+		<h1>Logged In Successfully</h1>
+		<a href="/profile">
+			<div class="profile card">
+				<p><%=name%></p>
+				<p style="font-size: small;"><%=mailid%></p>
+				<img src="https://media.licdn.com/dms/image/C4E03AQGFk2-MN3x_Tw/profile-displayphoto-shrink_800_800/0/1648188721893?e=2147483647&v=beta&t=AnNOZTzgVx-jyH_fDdbNip-W52n54axCTloYB1loFjo"
+					alt="" width="45px"
+					style="border-radius: 100px;padding: 5px;position: relative;left: 190px;top:-42px;border:1px solid black;padding: 0px;">
+			</div>
+
+		</a>
+		
+		<a href="/book">
+		<div class="card"
+			style="box-shadow: rgba(240, 46, 170, 0.4) -5px 5px, rgba(240, 46, 170, 0.3) -10px 10px, rgba(240, 46, 170, 0.2) -15px 15px, rgba(240, 46, 170, 0.1) -20px 20px, rgba(240, 46, 170, 0.05) -25px 25px;">
+			<i class="fas fa-circle"></i>
+
+			<h2>Book Tickets for you and your dear ones</h2> <img src="booking.png" width="250px"
+				style="position: relative;top:20px;border-radius: 20px;" alt="">
+		</div>
+
+		</a>
+
+		<a href="/status2">
+		<div class="card"
+			style="top:-400px;left: 420px;box-shadow: rgba(240, 46, 170, 0.4) 0px 5px, rgba(240, 46, 170, 0.3) 0px 10px, rgba(240, 46, 170, 0.2) 0px 15px, rgba(240, 46, 170, 0.1) 0px 20px, rgba(240, 46, 170, 0.05) 0px 25px;">
+			<i class="fas fa-circle"></i>
+
+			<h2>Check Live Train Status</h2>
+			<div
+				style="background-color: white;width: 250px;position:relative;left: 30px;top:55px ;text-align: center;height: 250px;border-radius: 20px;">
+				<img src="map1.png" width="200px" style="position: relative; top: 50px;" alt="">
+			</div>
+		</div>
+
+	 </a>
+	 <a href="/pnr">
+
+		 <div class="card"
+		 style="top:-820px;left:810px;box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px;">
+		 <i class="fas fa-circle"></i>
+		 
+		 <h2>Check Live PNR Status</h2>
+		 <div
+		 style="background-color: white;width: 250px;position:relative;left: 30px;top:55px ;text-align: center;height: 250px;border-radius: 20px;">
+		 <img src="seats.png" width="200px" style="position: relative; top: 50px;border-radius: 20px;" alt="">
+		</div>
+	</a>
+
+			<!-- <iframe
+		allow="microphone;"
+		width="350"
+		height="300"
+		style="position: relative;top: 100px;"
+		src="https://console.dialogflow.com/api-client/demo/embedded/2678ed45-cb61-453f-b04d-bf12ce05feb7">
+	</iframe> -->
+		</div>
+	</div>
+
+
+</body>
+
+</html>
