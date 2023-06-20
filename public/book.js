@@ -25,6 +25,19 @@ const openbtns = document.querySelectorAll('.openbtn')
 	bookingCard.querySelector('#dst').innerHTML=pt[5].textContent
 	bookingCard.querySelector('#arr').innerHTML=pt[7].textContent
 	bookingCard.querySelector('#dept').innerHTML=pt[8].textContent
+	
+	// Create a document definition
+	const print = document.querySelector(".pdf");
+	print.addEventListener('click',()=>{
+	var docDefinition = {
+        content: [
+          'Booking Details'
+		  
+        ]
+      };
+
+      // Generate the PDF document
+      pdfMake.createPdf(docDefinition).open();})
 
 	 /*Without Using Ticket Fares API*/
 

@@ -2012,10 +2012,11 @@ app.get("/dashboard",function(req,res){
         console.log("there");
         console.log(id1);
         console.log("KI");
-        res.render('dashboard',{name:id1.displayName,mailid:id1.displayName+"@getMail.com"});
+        res.render('dashboard',{name:id1.displayName,mailid:id1.displayName+"@gmail.com"});
     }
     else{
         console.log("not there")
+        res.redirect('/login')
     }
 })
 app.get("/logout",function(req,res){
