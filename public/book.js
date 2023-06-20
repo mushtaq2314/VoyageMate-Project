@@ -65,6 +65,10 @@ const openbtns = document.querySelectorAll('.openbtn')
 		}
 
 	table+=`</tr>`
+	table+=`<tr><td style="border: 2px solid black;border-collapse: collapse;padding:3px;text-align:center">GNWL4</td>
+	<td style="border: 2px solid black;border-collapse: collapse;padding:3px;text-align:center">GNWL9</td>
+	<td style="border: 2px solid black;border-collapse: collapse;padding:3px;text-align:center">GNWL1</td>
+	<td style="border: 2px solid black;border-collapse: collapse;padding:3px;text-align:center">Available-0006</td></tr>`
 	table+=`</table>`
 	generalFaresElement.innerHTML = table;
 	// 	})	
