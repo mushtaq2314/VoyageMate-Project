@@ -10,7 +10,7 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
 const findOrCreate = require('mongoose-findorcreate');
 var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
-
+var id1="";
 app=express()
 users=[]
 //Gopi
@@ -38,7 +38,6 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }));
-
 app.use(passport.initialize());
 app.use(passport.session());
 const maxAge=3*24*60*60;;
@@ -71,6 +70,8 @@ passport.use(new GoogleStrategy({
     // ids=profile;
 
     Model.findOrCreate({ googleId: profile.id }, function (err, user) {
+      // const token=createTOken("Google");
+      // res.cookie('jwt',token,{httpOnly:true,maxAge:maxAge*1000});
       return cb(err, user);
     });
   }
@@ -83,6 +84,7 @@ passport.use(new FacebookStrategy({
 function(accessToken, refreshToken, profile, cb) {
   console.log(profile);
   id1=profile;
+  console.log(profile);
   Model.findOrCreate({ facebookId: profile.id }, function (err, user) {
     return cb(err, user);
   });
@@ -95,6 +97,8 @@ app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/login' }),
   function(req, res) {
     // Successful authentication, redirect home.
+    const token=createTOken("facebook");
+    res.cookie('jwt',token,{httpOnly:true,maxAge:maxAge*1000});
     res.render('dashboard',{name:id1.displayName,mailid:id1.displayName+"@gmail.com"});
   });
   passport.use(new LinkedInStrategy({
@@ -106,6 +110,8 @@ app.get('/auth/facebook/callback',
     id1=(profile);
     console.log(profile);
     await Model.findOrCreate({ linkedinId: profile.id }, function (err, user) {
+      // const token=createTOken("Linkedin");
+      // res.cookie('jwt',token,{httpOnly:true,maxAge:maxAge*1000});
       return done(err, user);
     });
   }
@@ -143,6 +149,8 @@ app.get('/auth/linkedin/callback',
   passport.authenticate('linkedin', { failureRedirect: '/login' }),
   function(req, res) {
     // Successful authentication, redirect home.
+    const token=createTOken("Google");
+      res.cookie('jwt',token,{httpOnly:true,maxAge:maxAge*1000});
     res.render('dashboard',{name:id1.displayName,mailid:id1.emails[0].value});
   });
 app.get("/auth/google/secrets",
@@ -150,6 +158,8 @@ app.get("/auth/google/secrets",
   function(req, res) {
     console.log(id1);
     // Successful authentication, redirect to secrets.
+    const token=createTOken("Google");
+      res.cookie('jwt',token,{httpOnly:true,maxAge:maxAge*1000});
     res.redirect("/secrets");
   });
 
@@ -2000,7 +2010,9 @@ catch(err){
 app.get("/dashboard",function(req,res){
     if(req.cookies.jwt){
         console.log("there");
-        res.render('dashboard');
+        console.log(id1);
+        console.log("KI");
+        res.render('dashboard',{name:id1.displayName,mailid:id1.displayName+"@getMail.com"});
     }
     else{
         console.log("not there")
