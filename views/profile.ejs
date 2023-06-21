@@ -180,17 +180,18 @@ a:hover{
 		<form action="/profile" method="post">
 			
 		<div>
-			<img src="user.jpg" alt="" width="200px" style="position: absolute;top: 20px;left: 200px;border: 5px solid blueviolet;border-radius: 100px;padding: 5px;">
-			
+			<img src="https://media.licdn.com/dms/image/C4E03AQGFk2-MN3x_Tw/profile-displayphoto-shrink_800_800/0/1648188721893?e=2147483647&v=beta&t=AnNOZTzgVx-jyH_fDdbNip-W52n54axCTloYB1loFjo" alt="" width="200px" style="position: absolute;top: 20px;left: 200px;border: 5px solid blueviolet;border-radius: 100px;padding: 5px;">
+			<!-- <img src="https://media.tenor.com/XIoriIOh1z0AAAAM/ahaaaaa-venumadhav.gif" alt="" width="200px" height="200px" style="position: absolute;top: 20px;left: 200px;border: 2px solid white;border-radius: 10px;"> -->
+			<!-- <img src="mm.jpg" alt="profile" width="200px" height="200px" style="position: absolute;top: 20px;left: 200px;border: 2px solid black;border-radius: 10px;"> -->
 		</div>
 
-		<div style="position: absolute;left: 40px;top: 250px;"><p>First Name </p><input type="text" placeholder="First Name" value="Nippu"></div>
-		 <div style="position: relative;left: 320px;top: 250px;"><p>Last Name </p><input type="text" placeholder="Last Name" value="Gajala"></div>
-		<div style="position: absolute;left: 40px;top: 320px;"><p>Email</p><input type="email" placeholder="Email" value="gajala@sonicsolns.in"></div>
-		<div style="position: relative;left: 320px;top: 259px;"><p>Mobile Number </p><input type="text" placeholder="Mobile No." value="1234567890"></div>
-		<div style="position: absolute;left: 40px;top: 390px;"><p>Gender </p><input type="text" placeholder="Gender" value="Male"></div>
-		<div style="position: relative;left: 320px;top: 269px;"><p>Date Of Birth </p><input type="date" placeholder="DOB" value="01-01-01"></div>
-		<div style="position: relative;top: 280px;left: 40px;"><p>Address</p><input type="text" placeholder="Address" style="width:86%" value="Washington DC, United States of America."></div>
+		<div style="position: absolute;left: 40px;top: 250px;"><p>First Name </p><input name="firstname" type="text" placeholder="<%=firstname%>" value="<%=firstname%>"></div>
+		 <div style="position: relative;left: 320px;top: 250px;"><p>Last Name </p><input type="text" name="lastname" placeholder="<%=lastname%>" value="<%=lastname%>"></div>
+		<div style="position: absolute;left: 40px;top: 320px;"><p>Email</p><input type="email" name="mail" placeholder="<%=email%>" value="<%=email%>"></div>
+		<div style="position: relative;left: 320px;top: 259px;"><p>Mobile Number </p><input type="text" name="phno" placeholder="<%=phno%>" value="<%=phno%>"></div>
+		<div style="position: absolute;left: 40px;top: 390px;"><p>Gender </p><input type="text" name="gender" placeholder="<%=gender%>" value="<%=gender%>"></div>
+		<div style="position: relative;left: 320px;top: 269px;"><p>Date Of Birth </p><input type="text" name="dob" placeholder="<%=dob%>" value="<%=dob%>"></div>
+		<div style="position: relative;top: 280px;left: 40px;"><p>Address</p><input type="text" name="address" placeholder="<%=Address%>" style="width:86%" value="<%=Address%>"></div>
 		<button style="background-color: blueviolet;position: relative;left: 200px;width: 200px;height: 40px;color: white;border-radius: 5px;top: 300px;cursor: pointer;font-size: medium;">Save Changes</button> 
 		</form>
 	</div>
