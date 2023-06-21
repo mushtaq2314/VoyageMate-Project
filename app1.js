@@ -11,6 +11,7 @@ const FacebookStrategy = require('passport-facebook').Strategy;
 const findOrCreate = require('mongoose-findorcreate');
 var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
 var id1="";
+var ourid="";
 app=express()
 users=[]
 //Gopi
@@ -46,6 +47,24 @@ const createTOken=(id)=>{
     return jwt.sign({id},'ninja',{expiresIn:maxAge})
 }
 const Model=mangoose.model("Model",Schema);
+const ProfileSchema=new mangoose.Schema({
+  id:String,
+  firstname:String,
+  lastname:String,
+  mail:String,
+  phno:String,
+  dob:String,
+  address:String,
+  gender:String
+  })
+  const ProfileModel=mangoose.model("ProfileModel",ProfileSchema);
+  ProfileSchema.plugin(passportLocalMongoose);
+  ProfileSchema.plugin(findOrCreate);
+  app.use(session({
+    secret: "Our little secret.",
+    resave: false,
+    saveUninitialized: false
+  }));
 const jwt=require('jsonwebtoken');
 const { spawn } = require('child_process');
 passport.serializeUser(function(user, done) {
@@ -72,6 +91,7 @@ passport.use(new GoogleStrategy({
     Model.findOrCreate({ googleId: profile.id }, function (err, user) {
       // const token=createTOken("Google");
       // res.cookie('jwt',token,{httpOnly:true,maxAge:maxAge*1000});
+      ourid=profile.id;
       return cb(err, user);
     });
   }
@@ -86,6 +106,7 @@ function(accessToken, refreshToken, profile, cb) {
   id1=profile;
   console.log(profile);
   Model.findOrCreate({ facebookId: profile.id }, function (err, user) {
+    ourid=profile.id;
     return cb(err, user);
   });
 }
@@ -110,6 +131,7 @@ app.get('/auth/facebook/callback',
     id1=(profile);
     console.log(profile);
     await Model.findOrCreate({ linkedinId: profile.id }, function (err, user) {
+      ourid=profile.id;
       // const token=createTOken("Linkedin");
       // res.cookie('jwt',token,{httpOnly:true,maxAge:maxAge*1000});
       return done(err, user);
@@ -163,8 +185,42 @@ app.get("/auth/google/secrets",
     res.redirect("/secrets");
   });
 
-app.get("/profile",function(request,response){
-    response.render("profile");
+app.get("/profile",async function(request,response){
+  var docs="";
+  ProfileModel.find({ id: ourid}, function (err, docs) {
+    if (err){
+      console.log("error")
+  console.log()
+        console.log(err);
+        response.render("profile",{Address:"",firstname:"",gender:"",lastname:"",dob:"",email:"",phno:"",Address:""});
+    }
+    else{
+        console.log("First function call : ", docs);
+        console.log(docs);
+        console.log(docs.length);
+        docs=docs;
+        if(docs.length==0){
+          response.render("profile",{Address:"",firstname:"",gender:"",lastname:"",dob:"",email:"",phno:"",Address:""});
+        }
+        else{
+          docs=docs[0];
+        response.render("profile",{Address:docs.address,firstname:docs.firstname,gender:docs.gender,lastname:docs.lastname,dob:docs.mail,email:docs.mail,phno:docs.phno,Address:docs.address});
+        }}
+})
+})
+app.post("/profile",async function(req,response){
+  await ProfileModel.find({ id:ourid }).remove().exec();
+  await ProfileModel.create({
+    id:ourid,
+    firstname:req.body.firstname,
+    lastname:req.body.lastname,
+    phno:req.body.phno,
+    mail:req.body.mail,
+    dob:req.body.dob,
+    gender:req.body.gender,
+    address:req.body.address,
+});
+  response.render("profile",{Address:req.body.address,firstname:req.body.firstname,gender:req.body.gender,lastname:req.body.lastname,dob:req.body.dob,email:req.body.mail,phno:req.body.phno,Address:req.body.address});
 })
 app.get("/status2",function(request,response){
   response.render('status2',{i:1,num:'',src:'',des:'',current:'',alert:''})
@@ -1982,6 +2038,7 @@ catch(err){
     for(var mn=0;mn<users.length;mn++){
         var k=users[mn]._id;
         if(req.body.mail===users[mn].mail){
+          ourid=users[mn].Objectid;
             console.log("came");
             console.log(users);
            await bcrypt.compare(req.body.password,users[mn].password,function(req,response){
@@ -2010,17 +2067,17 @@ catch(err){
 app.get("/dashboard",function(req,res){
     if(req.cookies.jwt){
         console.log("there");
-        console.log(id1);
+        var name=id1;
         console.log("KI");
-        res.render('dashboard',{name:id1.displayName,mailid:id1.displayName+"@gmail.com"});
+        res.render('dashboard',{name:name.displayName,mailid:name.displayName+"@gmail.com"});
     }
     else{
         console.log("not there")
-        res.redirect('/login')
+        res.redirect("/login");
     }
 })
 app.get("/logout",function(req,res){
-    res.cookie('jwt','',{httpOnly:true,maxAge:1});
+    res.cookie('jwt','',{httpOnly:true,maxAge:0.222});
     res.redirect('/');
 })
 
