@@ -159,6 +159,20 @@
 			margin-bottom: 10px;
 			border-radius: 10px;
 		}
+		.ocard1 {
+			box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;			
+			position: absolute;
+			border-radius: 10px;
+			background-color: cyan;
+			color: black;
+			top: 100px;
+			left: 650px;
+			display: block;
+			height: 500px;
+			width: 500px;
+			position: fixed;
+			padding: 20px;
+		}
 		.ocard2 {
 			box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;			
 			position: absolute;
@@ -168,7 +182,7 @@
 			top: 100px;
 			left: 550px;
 			display: block;
-			height: 500px;
+			height: fit-content;
 			width: 700px;
 			position: fixed;
 			padding: 20px;
@@ -177,7 +191,7 @@
 			border: 2px solid black;
 			border-collapse: collapse;
 		}
-		.pdf{
+		.passengerDetails{
 			text-align: center;
 			width: 100px;
 			height: 40px;
@@ -186,9 +200,29 @@
 			background-color: black;
 			color: white;
 			position: relative;
-			left: 300px;
+			left: 180px;
 			top: 100px;
 			border-radius: 10px;
+		}
+		.pdf{
+			text-align: center;
+			width: 150px;
+			padding:10px;
+			font-weight: bold;
+			font-size: large;
+			background-color: black;
+			color: white;
+			position: relative;
+			left: 250px;
+			border-radius: 10px;
+		}
+		.ocard2 input{
+			background-color: #f6f5f7;
+			height: 30px;
+			font-size: medium;
+			border: 0.1px solid black;
+			text-align: center;
+
 		}
 	</style>
 </head>
@@ -315,18 +349,36 @@
 								<%}%>
 
 		</div>
-		<div class="ocard2">
+		<div class="ocard1">
 			<h2><span id="trno"></span></h2>
 			<h3><span id="trname"></span></h3>
 			<p>From: <span id="src"></span></p>
 			<p>To: <span id="dst"></span></p>
 			<p>Arrival: <span id="arr"></span></p>
 			<p>Departure: <span id="dept"></span></p>
+			<br>
 			<h3>Ticket Fares:-</h3>
 			<div id="fares">
 			</div>
-			<button class="closebtn" style="position: absolute;right: 20px;top: 30px;display: flex; cursor: pointer;"><i class="fa-solid fa-circle-xmark fa-2xl" ></i></button>
-			<button class="pdf">Book</button>
+			<button class="closebtn1" style="position: absolute;right: 20px;top: 30px;display: flex; cursor: pointer;"><i class="fa-solid fa-circle-xmark fa-2xl" ></i></button>
+			<button class="passengerDetails">Book</button>
+		</div>
+		<div id="passengerDetails" class="ocard2">
+			<h1>Enter Passenger Details</h1>
+			<form action="/book" method="post" id="passengerForm">
+				
+				<div id="passengerContainer">
+					<div class="passenger">
+					  <input type="text" name="name[]" placeholder="Passenger Name">
+					  <input type="text" name="age[]" placeholder="Passenger Age">
+					  <input type="text" name="gender[]" placeholder="Passenger Gender">
+					</div>
+				  </div>
+
+				<div id="addPassengerBtn" style="background-color: aqua;border-radius: 5px;padding: 8px;cursor: pointer;"><i class="fa-solid fa-plus " style="color: black;"></i> Add Passenger</div>
+				<button type="submit" class="pdf">Pay & Book</button>
+			</form>
+			<button class="closebtn2" style="position: absolute;right: 20px;top: 30px;display: flex; cursor: pointer;"><i class="fa-solid fa-circle-xmark fa-2xl" ></i></button>
 		</div>
 </body>
 

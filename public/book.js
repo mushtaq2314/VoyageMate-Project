@@ -3,9 +3,12 @@
 const openbtns = document.querySelectorAll('.openbtn')
 	const divi = document.querySelector('.ocard')
 	const divi2 = document.querySelector('.container2')
-	const bookingCard = document.querySelector('.ocard2')
+	const bookingCard = document.querySelector('.ocard1')
+	const pdetails = document.querySelector('#passengerDetails')
 	bookingCard.style.display='none'
-	const closebtn = document.querySelector('.closebtn')
+	pdetails.style.display='none'
+	const closebtn1 = document.querySelector('.closebtn1')
+	const closebtn2 = document.querySelector('.closebtn2')
 	for (i = 0; i < openbtns.length; i++) {
 		openbtns[i].addEventListener('click', function (event) {
 	const clickedButton = event.target; // Get the clicked button element
@@ -25,19 +28,143 @@ const openbtns = document.querySelectorAll('.openbtn')
 	bookingCard.querySelector('#dst').innerHTML=pt[5].textContent
 	bookingCard.querySelector('#arr').innerHTML=pt[7].textContent
 	bookingCard.querySelector('#dept').innerHTML=pt[8].textContent
+
+	 //Add passenger button
+	 document.getElementById('addPassengerBtn').addEventListener('click', function() {
+		var container = document.getElementById('passengerContainer');
+		var newPassengerDiv = document.createElement('div');
+		newPassengerDiv.classList.add('passenger');
+		newPassengerDiv.innerHTML = `
+		  <input type="text" name="name[]" placeholder="Passenger Name">
+		  <input type="text" name="age[]" placeholder="Passenger Age">
+		  <input type="text" name="gender[]" placeholder="Passenger Gender">
+		`;
+		container.appendChild(newPassengerDiv);
+	  });
+	  
+	  document.getElementById('passengerForm').addEventListener('submit', function(event) {
+		event.preventDefault();
+	  });
+
+	const passengerDetails = document.querySelector('.passengerDetails')
+	passengerDetails.addEventListener('click',()=>{
+		pdetails.style.display='block'
+
+	})
 	
-	// Create a document definition
+	// Creating document definition
 	const print = document.querySelector(".pdf");
 	print.addEventListener('click',()=>{
+		const details = pdetails.querySelectorAll('input')
+		console.log(details)
 	var docDefinition = {
-        content: [
-          'Booking Details'
-		  
-        ]
-      };
+  pageSize: {
+    width: 595,  // Custom width in pixels
+    height: 300  // Custom height in pixels
+  },
+  pageMargins: [40, 40, 40, 60],
+  content: [
+    {
+      text: 'IRCTC',
+      style: 'irc'
+    },
+    {
+      text: 'Booking Details',
+      style: 'header'
+    },
+    {
+		style:'data',
+		text: 'Train Number: ' + pt[0].textContent
+    },
+    {
+		style:'data',
+		text: 'Train Name: ' + pt[1].textContent
+    },
+    {
+		style:'data',
+		text: 'Date of Journey : ' + pt[2].textContent
+    },
+    {
+		style:'data',
+		text: 'Boarding At: ' + pt[4].textContent.replace('\n','').trim()
+    },
+    {
+		style:'data',
+		text: 'Destination: ' + pt[5].textContent.replace('\n','').trim()
+    },
+    {
+		style:'data',
+		text: 'Departure: ' + pt[8].textContent
+    },
+    {
+		style:'data',
+		text: 'Arrival: ' + pt[7].textContent
+    },
+    {
+		style:'data',
+		text: 'Class: A1' 
+    },
+	{
+		text: 'Passenger Details',
+		style: 'header2'
+    },
+	// {
+	// 	style:'passenger',
+	// 	text:'Name: '+details[0].value.trim()
+	// },
+	// {
+	// 	style:'passenger',
+	// 	text:'Age: '+details[1].value.trim()
+	// },
+	// {
+	// 	style:'passenger',
+	// 	text:'Gender: '+details[2].value.trim()
+	// }
+  ],
+  styles: {
+    header: {
+      fontSize: 18,
+      bold: true,
+      marginBottom: 10,
+	  decoration:'underline'
+    },
+	irc:{
+		fontSize:20,
+		bold:true,
+		marginLeft:220,
+		marginBottom:10,
+		backgound:'blueviolet',
 
+	},
+	passenger:{
+		marginLeft:240,
+		marginBottom:5,
+		fontSize:10
+	},
+	header2:{
+		fontSize: 18,
+      bold: true,
+      marginBottom: 10,
+	  decoration:'underline',
+		marginLeft:240,
+		marginTop:-170
+	},
+	data:{
+		fontSize:10,
+		marginBottom:5
+	}
+  }
+};
+for(var i=0;i<details.length;i+=3){
+	docDefinition.content.push({style:'passenger',text:'Name: '+details[i].value.trim()})
+	docDefinition.content.push({style:'passenger',text:'Age: '+details[i+1].value.trim()})
+	docDefinition.content.push({style:'passenger',text:'Gender: '+details[i+2].value.trim()})
+		}
+console.log(docDefinition.content)
       // Generate the PDF document
-      pdfMake.createPdf(docDefinition).open();})
+      pdfMake.createPdf(docDefinition).open();
+    //   pdfMake.createPdf(docDefinition).download('Ticket');
+	})
 
 	 /*Without Using Ticket Fares API*/
 
@@ -69,7 +196,7 @@ const openbtns = document.querySelectorAll('.openbtn')
 			border-collapse: collapse;padding:3px">`
     for (let j = 0; j < generalFares.length; j++) {
       table += `<th style="border: 2px solid black;
-			border-collapse: collapse;padding:3px">Class: ${generalFares[j].classType}</th>`;
+			border-collapse: collapse;padding:3px;background-color:gray">Class: ${generalFares[j].classType}</th>`;
     }
 	table+=`<tr>`
 		for (let j = 0; j < generalFares.length; j++) {
@@ -142,10 +269,19 @@ const openbtns = document.querySelectorAll('.openbtn')
 
 
 	//Close the booking div
-	closebtn.addEventListener('click',()=>{
+	closebtn1.addEventListener('click',()=>{
 		
 			divi.style.opacity = 1;
 			divi2.style.opacity = 1;
 			bookingCard.style.display = 'none';
+			pdetails.style.display = 'none';
+		
+	})
+	closebtn2.addEventListener('click',()=>{
+		
+			divi.style.opacity = 0.2;
+			divi2.style.opacity = 0.2;
+			// bookingCard.style.display = 'none';
+			pdetails.style.display = 'none';
 		
 	})
