@@ -64,10 +64,7 @@ const openbtns = document.querySelectorAll('.openbtn')
 		const details = pdetails.querySelectorAll('input')
 		console.log(details)
 	var docDefinition = {
-  pageSize: {
-    width: 595,  // Custom width in pixels
-    height: 300  // Custom height in pixels
-  },
+  pageOrientation:'auto',
   pageMargins: [40, 40, 40, 60],
   content: [
     {
@@ -76,59 +73,41 @@ const openbtns = document.querySelectorAll('.openbtn')
     },
     {
       text: 'Booking Details',
-      style: 'header'
+      style: 'header1'
     },
     {
 		style:'data',
-		text: 'Train Number: ' + pt[0].textContent.replace('\n','').trim()
+		text: 'Train Number: ' + pt[0].textContent.replace('\n','').trim()+'\tTrain Name: ' + pt[1].textContent.replace('\n','').trim()+'\tBoarding At: ' + pt[4].textContent.replace('\n','').trim()+'\tDate of Journey : ' + pt[2].textContent.replace('\n','').trim()
     },
     {
 		style:'data',
-		text: 'Train Name: ' + pt[1].textContent.replace('\n','').trim()
-    },
-    {
-		style:'data',
-		text: 'Date of Journey : ' + pt[2].textContent.replace('\n','').trim()
-    },
-    {
-		style:'data',
-		text: 'Boarding At: ' + pt[4].textContent.replace('\n','').trim()
-    },
-    {
-		style:'data',
-		text: 'Destination: ' + pt[5].textContent.replace('\n','').trim()
-    },
-    {
-		style:'data',
-		text: 'Departure: ' + pt[8].textContent.replace('\n','').trim()
-    },
-    {
-		style:'data',
-		text: 'Arrival: ' + pt[7].textContent.replace('\n','').trim()
-    },
-    {
-		style:'data',
-		text: 'Class: A1' 
+		text: 'Destination: ' + pt[5].textContent.replace('\n','').trim()+'\tDeparture: ' + pt[8].textContent.replace('\n','').trim()+'\tArrival: ' + pt[7].textContent.replace('\n','').trim()+'\tClass: A1' 
     },
 	{
 		text: 'Passenger Details',
 		style: 'header2'
     },
-	// {
-	// 	style:'passenger',
-	// 	text:'Name: '+details[0].value.trim()
-	// },
-	// {
-	// 	style:'passenger',
-	// 	text:'Age: '+details[1].value.trim()
-	// },
-	// {
-	// 	style:'passenger',
-	// 	text:'Gender: '+details[2].value.trim()
-	// }
+	{
+	table: {
+		style:table,
+        headerRows: 1,
+        widths: [ '*', 'auto', 100, '*' ],
+
+        body: [
+          [ {text:'Name',style:'header'},{text:'Age',style:'header'},{text:'Gender',style:'header'},{text:'Berth No.',style:'header'}],
+        ]
+      }
+	},
   ],
   styles: {
     header: {
+      fontSize: 14,
+      bold: true,
+	  fillColor:'blueviolet',
+	  alignment:'center',
+	  color:'white'
+    },
+    header1: {
       fontSize: 18,
       bold: true,
       marginBottom: 10,
@@ -139,8 +118,7 @@ const openbtns = document.querySelectorAll('.openbtn')
 		bold:true,
 		marginLeft:220,
 		marginBottom:10,
-		backgound:'blueviolet',
-
+		fillColor:'blueviolet',
 	},
 	passenger:{
 		marginLeft:240,
@@ -152,21 +130,29 @@ const openbtns = document.querySelectorAll('.openbtn')
       bold: true,
       marginBottom: 10,
 	  decoration:'underline',
-		marginLeft:240,
-		marginTop:-170
 	},
 	data:{
 		fontSize:10,
 		marginBottom:5
+	},
+	table:{
+		alignment:'center'
+	},
+	cell:{
+		fillColor:'cyan',
+		alignment:'center'
 	}
   }
 };
-for(var i=0;i<details.length;i+=3){
-	docDefinition.content.push({style:'passenger',text:'Name: '+details[i].value.trim()})
-	docDefinition.content.push({style:'passenger',text:'Age: '+details[i+1].value.trim()})
-	docDefinition.content.push({style:'passenger',text:'Gender: '+details[i+2].value.trim()})
-		}
-console.log(docDefinition.content)
+//Entering passenger details into table
+
+var tableBody = docDefinition.content.find(item => item.table && item.table.body);
+  if (tableBody) {
+    for (var i = 0; i < details.length; i += 3) {
+      tableBody.table.body.push([{text:details[i].value,style:'cell'},{text:details[i+1].value,style:'cell'},{text:details[i+2].value,style:'cell'},{text:`A1 ${i+50}`,style:'cell'}]);
+    }
+  }
+
       // Generate the PDF document
       pdfMake.createPdf(docDefinition).open();
     //   pdfMake.createPdf(docDefinition).download('Ticket');
