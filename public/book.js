@@ -80,15 +80,15 @@ const openbtns = document.querySelectorAll('.openbtn')
     },
     {
 		style:'data',
-		text: 'Train Number: ' + pt[0].textContent
+		text: 'Train Number: ' + pt[0].textContent.replace('\n','').trim()
     },
     {
 		style:'data',
-		text: 'Train Name: ' + pt[1].textContent
+		text: 'Train Name: ' + pt[1].textContent.replace('\n','').trim()
     },
     {
 		style:'data',
-		text: 'Date of Journey : ' + pt[2].textContent
+		text: 'Date of Journey : ' + pt[2].textContent.replace('\n','').trim()
     },
     {
 		style:'data',
@@ -100,11 +100,11 @@ const openbtns = document.querySelectorAll('.openbtn')
     },
     {
 		style:'data',
-		text: 'Departure: ' + pt[8].textContent
+		text: 'Departure: ' + pt[8].textContent.replace('\n','').trim()
     },
     {
 		style:'data',
-		text: 'Arrival: ' + pt[7].textContent
+		text: 'Arrival: ' + pt[7].textContent.replace('\n','').trim()
     },
     {
 		style:'data',
