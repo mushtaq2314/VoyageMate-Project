@@ -150,7 +150,7 @@
 			top: 300px;
 			left: 500px;
 		}
-		
+
 		.icard {
 			background-color: white;
 			width: 800px;
@@ -159,8 +159,9 @@
 			margin-bottom: 10px;
 			border-radius: 10px;
 		}
+
 		.ocard1 {
-			box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;			
+			box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 			position: absolute;
 			border-radius: 10px;
 			background-color: cyan;
@@ -173,8 +174,9 @@
 			position: fixed;
 			padding: 20px;
 		}
+
 		.ocard2 {
-			box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;			
+			box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 			position: absolute;
 			border-radius: 10px;
 			background-color: cyan;
@@ -187,11 +189,13 @@
 			position: fixed;
 			padding: 20px;
 		}
-		table td th{
+
+		table td th {
 			border: 2px solid black;
 			border-collapse: collapse;
 		}
-		.passengerDetails{
+
+		.passengerDetails {
 			text-align: center;
 			width: 100px;
 			height: 40px;
@@ -203,11 +207,13 @@
 			left: 180px;
 			top: 100px;
 			border-radius: 10px;
+			cursor: pointer;
 		}
-		.pdf{
+
+		.pdf {
 			text-align: center;
 			width: 150px;
-			padding:10px;
+			padding: 10px;
 			font-weight: bold;
 			font-size: large;
 			background-color: black;
@@ -215,14 +221,29 @@
 			position: relative;
 			left: 250px;
 			border-radius: 10px;
+			cursor: pointer;
 		}
-		.ocard2 input{
+
+		.ocard2 input {
 			background-color: #f6f5f7;
 			height: 30px;
 			font-size: medium;
 			border: 0.1px solid black;
 			text-align: center;
 
+		}
+
+		.del {
+			background-color: black;
+			color: white;
+			width: fit-content;
+			text-align: center;
+			padding: 2px 6px;
+			border-radius: 3px;
+			position: relative;
+			left: 630px;
+			top: -30px;
+			cursor: pointer;
 		}
 	</style>
 </head>
@@ -302,15 +323,21 @@
 							<div class="icard">
 								<p
 									style="background-color: blueviolet;color:white;font-weight: bold;border-radius: 9px 9px 0px 0px;">
-									&nbsp Train Number: <span><%=i.train_number%></span>
+									&nbsp Train Number: <span>
+										<%=i.train_number%>
+									</span>
 
-										<i class="fa-sharp fa-solid fa-ticket"
-											style="position: relative;right: -590px;"></i>
-										<i class="fa-regular fa-calendar-days"
-											style="position: relative;right: -540px;"></i>
-										<i class="fa-solid fa-train-subway"
-											style="position: relative;right: -490px;"></i></p>
-								<p id="name"> &nbsp Train Name: <span><%=i.train_name%></span><span style="position: absolute;right:10px"><%=date%></span>
+									<i class="fa-sharp fa-solid fa-ticket"
+										style="position: relative;right: -590px;"></i>
+									<i class="fa-regular fa-calendar-days"
+										style="position: relative;right: -540px;"></i>
+									<i class="fa-solid fa-train-subway" style="position: relative;right: -490px;"></i>
+								</p>
+								<p id="name"> &nbsp Train Name: <span>
+										<%=i.train_name%>
+									</span><span style="position: absolute;right:10px">
+										<%=date%>
+									</span>
 								</p>
 								<h3 style="text-align: center;"><span style="color: grey;font-family: consolas;">
 										<%=i.train_origin_station_code%>----------
@@ -324,10 +351,15 @@
 									</span>
 
 									<span style="color: grey;font-family: consolas;">----------
-										<%=i.train_destination_station_code%></span>
+										<%=i.train_destination_station_code%>
+									</span>
 								</h3>
 								<p style="margin-bottom: 50px;text-align: center;font-weight: bold;margin-top: 5px;">
-									Departure: <span><%=i.depart_time%></span> &emsp; Arrival: <span><%=i.arrival_time%></span>
+									Departure: <span>
+										<%=i.depart_time%>
+									</span> &emsp; Arrival: <span>
+										<%=i.arrival_time%>
+									</span>
 								</p><br>
 
 								<p style="text-align: center;font-weight: bold;margin-top: -70px;">
@@ -360,25 +392,32 @@
 			<h3>Ticket Fares:-</h3>
 			<div id="fares">
 			</div>
-			<button class="closebtn1" style="position: absolute;right: 20px;top: 30px;display: flex; cursor: pointer;"><i class="fa-solid fa-circle-xmark fa-2xl" ></i></button>
+			<button class="closebtn1"
+				style="position: absolute;right: 20px;top: 30px;display: flex; cursor: pointer;"><i
+					class="fa-solid fa-circle-xmark fa-2xl"></i></button>
 			<button class="passengerDetails">Book</button>
 		</div>
 		<div id="passengerDetails" class="ocard2">
 			<h1>Enter Passenger Details</h1>
 			<form action="/book" method="post" id="passengerForm">
-				
+
 				<div id="passengerContainer">
 					<div class="passenger">
-					  <input type="text" name="name[]" placeholder="Passenger Name">
-					  <input type="text" name="age[]" placeholder="Passenger Age">
-					  <input type="text" name="gender[]" placeholder="Passenger Gender">
+						<input type="text" name="name[]" placeholder="Passenger Name">
+						<input type="text" name="age[]" placeholder="Passenger Age">
+						<input type="text" name="gender[]" placeholder="Passenger Gender">
+						<div class="del"><i class="fa-solid fa-trash"></i></div>
 					</div>
-				  </div>
+				</div>
 
-				<div id="addPassengerBtn" style="background-color: aqua;border-radius: 5px;padding: 8px;cursor: pointer;"><i class="fa-solid fa-plus " style="color: black;"></i> Add Passenger</div>
+				<div id="addPassengerBtn"
+					style="background-color: aqua;border-radius: 5px;padding: 8px;cursor: pointer;"><i
+						class="fa-solid fa-plus " style="color: black;"></i> Add Passenger</div>
 				<button type="submit" class="pdf">Pay & Book</button>
 			</form>
-			<button class="closebtn2" style="position: absolute;right: 20px;top: 30px;display: flex; cursor: pointer;"><i class="fa-solid fa-circle-xmark fa-2xl" ></i></button>
+			<button class="closebtn2"
+				style="position: absolute;right: 20px;top: 30px;display: flex; cursor: pointer;"><i
+					class="fa-solid fa-circle-xmark fa-2xl"></i></button>
 		</div>
 </body>
 
@@ -387,5 +426,5 @@
 <!-- <script src="book.js"></script> -->
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/pdfmake.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/vfs_fonts.js"></script>
-<script src="book.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/vfs_fonts.js"></script>
+<script src="book.js"></script>

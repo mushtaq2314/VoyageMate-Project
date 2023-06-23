@@ -11,8 +11,8 @@ const openbtns = document.querySelectorAll('.openbtn')
 	const closebtn2 = document.querySelector('.closebtn2')
 	for (i = 0; i < openbtns.length; i++) {
 		openbtns[i].addEventListener('click', function (event) {
-	const clickedButton = event.target; // Get the clicked button element
-    const parentDiv = clickedButton.closest('.icard');
+	var clickedButton = event.target; // Get the clicked button element
+    var parentDiv = clickedButton.closest('.icard');
 	const pt = parentDiv.querySelectorAll('span')
 	pt.forEach(element => {
 	console.log(element.textContent)
@@ -38,13 +38,19 @@ const openbtns = document.querySelectorAll('.openbtn')
 		  <input type="text" name="name[]" placeholder="Passenger Name">
 		  <input type="text" name="age[]" placeholder="Passenger Age">
 		  <input type="text" name="gender[]" placeholder="Passenger Gender">
+		  <div class="del"><i class="fa-solid fa-trash"></i></div>
 		`;
 		container.appendChild(newPassengerDiv);
+
+		var delPassengerBtn = newPassengerDiv.querySelector(".del");
+  delPassengerBtn.addEventListener("click", function () {
+    container.removeChild(newPassengerDiv);})
 	  });
 	  
 	  document.getElementById('passengerForm').addEventListener('submit', function(event) {
 		event.preventDefault();
 	  });
+
 
 	const passengerDetails = document.querySelector('.passengerDetails')
 	passengerDetails.addEventListener('click',()=>{
