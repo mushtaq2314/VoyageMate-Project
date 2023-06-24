@@ -77,22 +77,24 @@
 		}
 		#outer{
 			background-color: white;
-			width: 60%;
+			width: fit-content;
 			height: fit-content;
 			position: relative;
-			left: 270px;
 			align-items: center;
 			text-align: center;
 			margin-top: 50px;
 		}
-
 		#inner{
 			position: relative;
 			left: 55px;
 			width: 90%;
 			height: fit-content;
 		}
-	
+		td{
+			border: 2px solid black;
+			text-align: center;
+			padding: 2px 4px;
+		}
 	</style>
 </head>
 
@@ -152,18 +154,55 @@
 		</form>
 		<div>
 <% if(i===0){%>
-<div id="outer" style="box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;">
-	<h4 style="background-color: blueviolet;color: white;">TRAIN LIVE RUNNING STATUS</h4>
-	<div id="inner">
-		<p>Train number: <%=num%></p>
-		<p>Source: <%=src%></p>
-		<p>Destination: <%=des%></p>
-		<p>Current Station Name: <%=current%></p>
-		<%if (alert) {%>
-		<p>Alert Message: <%=alert%></p>
-		<%}%>
-	</div>
-</div><%}%>
+	<div id="outer">
+		<h4 style="background-color: blueviolet;color: white;font-size: large;">TRAIN LIVE RUNNING STATUS</h4>
+		<table style="margin-top: -10px;">
+			<tr>
+				<td>Train Number</td>
+				<td><%=data.train_number%></td>
+			</tr>
+			<tr>
+				<td>Train Name</td>
+				<td><%=data.train_name%></td>
+			</tr>
+			<tr>
+				<td>Source</td>
+				<td><%=data.source%></td>
+			</tr>
+			<tr>
+				<td>Destination</td>
+				<td><%=data.destination%></td>
+			</tr>
+			<tr style="background-color: yellow;">
+				<td>Current Station Name</td>
+				<td><%=data.current_station_name.slice(0,-1)%></td>
+			</tr>
+			<tr>
+				<td>Expected Time of Arrival</td>
+				<td><%=data.eta%></td>
+			</tr>
+			<tr>
+				<td>Expected Time of Departure</td>
+				<td><%=data.etd%></td>
+			</tr>
+			<tr >
+				<td>Upcoming Station Name</td>
+				<td><%=next%>(<%=nextcode%>)</td>
+			</tr>
+			<tr >
+				<td>Next Station Arrival</td>
+				<td><%=nexteta%></td>
+			</tr>
+			
+			<%if(data.delay){%>
+			<tr style="background-color: red;color: white;">
+				<td>Alert Message</td>
+				<td>Late By <%=Math.floor(data.delay/60)%>hrs <%=(data.delay)%60%>mins</td>
+			</tr>
+			<%}%>
+		</table>
+		
+	</div><%}%>
 <% if(i===2){%>
 	<p style="text-align: center; color:'red';" ><i class="fas fa triangle-eclamation"></i> Invalid Train Number</p><%}%>
 			<div id="ftr"><%-include('footer')-%></div>

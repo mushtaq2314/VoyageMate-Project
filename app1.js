@@ -252,7 +252,7 @@ app.post('/status',function(req,res){
 const options = {
   method: 'GET',
   url: 'https://irctc1.p.rapidapi.com/api/v1/liveTrainStatus',
-  params: {trainNo: req.body.trno, startDay: '0'},
+  params: {trainNo: req.body.trno, startDay: '1'},
   headers: {
     'X-RapidAPI-Key': 'dae1c185fbmsh95be9cdf96fd443p13e64ejsndb7c59e57250',
     'X-RapidAPI-Host': 'irctc1.p.rapidapi.com'
@@ -266,14 +266,91 @@ if (response.data.data.message==="Please enter a valid train number"){
 }
   console.log('Current station name: '+response.data.data.current_station_name.slice(0,-1)+'\nCurrent Station Code:'+response.data.data.current_station_code)
 
-  res.render('status',{i:0,num:response.data.data.train_number,src:response.data.data.source,des:response.data.data.destination,current:response.data.data.current_station_name,alert:response.data.data.new_alert_msg})
+  res.render('status',{i:0,data:response.data.data,next:response.data.data.upcoming_stations[1].station_name,nextcode:response.data.data.upcoming_stations[1].station_code,nexteta:response.data.data.upcoming_stations[1].eta})
   }).catch(function (error) {
 	console.error(error);
     res.render('status',{i:2,num:'',src:'',des:'',current:'',alert:''});
-
-    // res.send('invalid train number 1');
 });
-//   res.send('invalid train number');
+data={
+  status: true,
+  message: 'Success',
+  timestamp: 1687629044807,
+  data: {
+    delay: 374,
+    train_start_date: '2023-06-24',
+    destination: 'ADB',
+    seo_train_name: 'Krishna Express',
+    at_src: false,
+    source: 'TPTY',
+    a_day: 0,
+    smart_city_id: null,
+    stoppage_number: 33,
+    avg_speed: 0,
+    is_ry_eta: true,
+    current_state_code: 'TS',
+    si_no: 84,
+    status_as_of_min: 10,
+    instance_alert: 0,
+    ahead_distance: 0,
+    current_station_name: 'KAZIPET JN~',
+    update_time: '2023-06-24T23:10:00Z',
+    previous_stations: [
+      [Object], [Object], [Object],
+      [Object], [Object], [Object],
+      [Object], [Object], [Object],
+      [Object], [Object], [Object],
+      [Object], [Object], [Object],
+      [Object], [Object], [Object],
+      [Object], [Object], [Object],
+      [Object], [Object], [Object],
+      [Object], [Object], [Object],
+      [Object], [Object], [Object],
+      [Object], [Object]
+    ],
+    notification_date: '2023-06-24',
+    status_as_of: 'As of 10 mins ago',
+    current_station_code: 'KZJ',
+    std: '2023-06-24 05:45',
+    at_src_dstn: false,
+    cur_stn_std: '16:57',
+    eta: '23:10',
+    at_dstn: false,
+    related_alert: 0,
+    upcoming_stations: [
+      [Object], [Object], [Object],
+      [Object], [Object], [Object],
+      [Object], [Object], [Object],
+      [Object], [Object], [Object],
+      [Object], [Object], [Object],
+      [Object], [Object], [Object],
+      [Object], [Object], [Object],
+      [Object], [Object], [Object],
+      [Object], [Object]
+    ],
+    spent_time: 0.074,
+    success: true,
+    train_name: 'TIRUPATI - ADILABAD Krishna Express',
+    run_days: 'MON,TUE,WED,THU,FRI,SAT,SUN',
+    train_number: '17405',
+    etd: '23:11',
+    cur_stn_sta: '16:56',
+    ahead_distance_text: 'At station',
+    user_id: 0,
+    distance_from_source: 603,
+    current_location_info: [ [Object], [Object], [Object], [Object] ],
+    platform_number: 3,
+    is_run_day: true,
+    late_update: false,
+    new_alert_msg: '',
+    new_alert_id: 0,
+    status: 'A',
+    data_from: 'NA',
+    total_distance: 1227,
+    journey_time: 1470,
+    ir_train_name: 'TIRUPATI - ADILABAD Krishna Express'
+  }
+}
+// res.render('status',{i:0,data:data.data,next:'WARANGAL',nextcode:'WL',nexteta:'00:10'})
 })
 /////////////////////////////
 
@@ -301,65 +378,83 @@ app.post('/status2',function(req,res){
     // res.render('status');
     console.log("clicked");
     console.log(req.body);
-    data = {
+    data={
       status: true,
       message: 'Success',
-      timestamp: 1684605407733,
+      timestamp: 1687629044807,
       data: {
-        std: '2023-05-20 05:45',
-        at_src: false,
-        late_update: false,
-        new_alert_id: 0,
-        seo_train_name: 'Krishna Express',
-        train_number: '17405',
-        stoppage_number: 0,
-        smart_city_id: null,
-        data_from: 'NA',
-        at_src_dstn: false,
-        avg_speed: 0,
-        previous_stations: [
-          [Object], [Object], [Object], [Object],
-          [Object], [Object], [Object], [Object],
-          [Object], [Object], [Object], [Object],
-          [Object], [Object], [Object], [Object],
-          [Object], [Object], [Object], [Object],
-          [Object], [Object], [Object], [Object],
-          [Object], [Object], [Object], [Object],
-          [Object], [Object], [Object], [Object],
-          [Object], [Object], [Object], [Object],
-          [Object], [Object], [Object], [Object],
-          [Object], [Object], [Object], [Object],
-          [Object]
-        ],
-        current_station_code: 'PAPM',
-        platform_number: 0,
-        success: true,
-        spent_time: 0.058,
-        journey_time: 1470,
-        update_time: '2023-05-20T23:27:00Z',
-        etd: '23:06',
-        ir_train_name: 'TIRUPATI - ADILABAD Krishna Express',
-        distance_from_source: 785,
-        si_no: 138,
-        eta: '23:06',
-        cur_stn_std: '21:46',
-        status_as_of: 'As of few seconds ago',
-        source: 'TPTY',
-        current_location_info: [ [Object], [Object], [Object] ],
-        a_day: 0,
-        total_distance: 1227,
-        is_ry_eta: true,
-        train_name: 'TIRUPATI - ADILABAD Krishna Express',
+        delay: 374,
+        train_start_date: '2023-06-24',
         destination: 'ADB',
+        seo_train_name: 'Krishna Express',
+        at_src: false,
+        source: 'TPTY',
+        a_day: 0,
+        smart_city_id: null,
+        stoppage_number: 33,
+        avg_speed: 0,
+        is_ry_eta: true,
+        current_state_code: 'TS',
+        si_no: 84,
+        status_as_of_min: 10,
+        instance_alert: 0,
+        ahead_distance: 0,
+        current_station_name: 'KAZIPET JN~',
+        update_time: '2023-06-24T23:10:00Z',
+        previous_stations: [
+          [Object], [Object], [Object],
+          [Object], [Object], [Object],
+          [Object], [Object], [Object],
+          [Object], [Object], [Object],
+          [Object], [Object], [Object],
+          [Object], [Object], [Object],
+          [Object], [Object], [Object],
+          [Object], [Object], [Object],
+          [Object], [Object], [Object],
+          [Object], [Object], [Object],
+          [Object], [Object]
+        ],
+        notification_date: '2023-06-24',
+        status_as_of: 'As of 10 mins ago',
+        current_station_code: 'KZJ',
+        std: '2023-06-24 05:45',
+        at_src_dstn: false,
+        cur_stn_std: '16:57',
+        eta: '23:10',
+        at_dstn: false,
+        related_alert: 0,
         upcoming_stations: [
-          [Object], [Object],
-          [Object], [Object],
-          [Object], [Object],
-          [Object], [Object],
-          [Object], [Object],
-          [Object], [Object],
-          [Object], [Object],
-          [Object]]
+          [Object], [Object], [Object],
+          [Object], [Object], [Object],
+          [Object], [Object], [Object],
+          [Object], [Object], [Object],
+          [Object], [Object], [Object],
+          [Object], [Object], [Object],
+          [Object], [Object], [Object],
+          [Object], [Object], [Object],
+          [Object], [Object]
+        ],
+        spent_time: 0.074,
+        success: true,
+        train_name: 'TIRUPATI - ADILABAD Krishna Express',
+        run_days: 'MON,TUE,WED,THU,FRI,SAT,SUN',
+        train_number: '17405',
+        etd: '23:11',
+        cur_stn_sta: '16:56',
+        ahead_distance_text: 'At station',
+        user_id: 0,
+        distance_from_source: 603,
+        current_location_info: [ [Object], [Object], [Object], [Object] ],
+        platform_number: 3,
+        is_run_day: true,
+        late_update: false,
+        new_alert_msg: '',
+        new_alert_id: 0,
+        status: 'A',
+        data_from: 'NA',
+        total_distance: 1227,
+        journey_time: 1470,
+        ir_train_name: 'TIRUPATI - ADILABAD Krishna Express'
       }
     }
     upcoming_stations=[
