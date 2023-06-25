@@ -26,8 +26,8 @@ const openbtns = document.querySelectorAll('.openbtn')
 	bookingCard.querySelector('#trname').innerHTML=pt[1].textContent
 	bookingCard.querySelector('#src').innerHTML=pt[4].textContent
 	bookingCard.querySelector('#dst').innerHTML=pt[5].textContent
-	bookingCard.querySelector('#arr').innerHTML=pt[7].textContent
-	bookingCard.querySelector('#dept').innerHTML=pt[8].textContent
+	bookingCard.querySelector('#arr').innerHTML=pt[8].textContent
+	bookingCard.querySelector('#dept').innerHTML=pt[7].textContent
 
 	 //Add passenger button
 	 document.getElementById('addPassengerBtn').addEventListener('click', function() {
@@ -81,7 +81,7 @@ const openbtns = document.querySelectorAll('.openbtn')
     },
     {
 		style:'data',
-		text: 'Destination: ' + pt[5].textContent.replace('\n','').trim()+'\tDeparture: ' + pt[8].textContent.replace('\n','').trim()+'\tArrival: ' + pt[7].textContent.replace('\n','').trim()+'\tClass: A1' 
+		text: 'Destination: ' + pt[5].textContent.replace('\n','').trim()+'\tDeparture: ' + pt[7].textContent.replace('\n','').trim()+'\tArrival: ' + pt[8].textContent.replace('\n','').trim()+'\tClass: A1' 
     },
 	{
 		text: 'Passenger Details',
