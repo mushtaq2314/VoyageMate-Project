@@ -252,7 +252,7 @@ app.post('/status',function(req,res){
 const options = {
   method: 'GET',
   url: 'https://irctc1.p.rapidapi.com/api/v1/liveTrainStatus',
-  params: {trainNo: req.body.trno, startDay: '1'},
+  params: {trainNo: req.body.trno, startDay: req.body.date},
   headers: {
     'X-RapidAPI-Key': 'dae1c185fbmsh95be9cdf96fd443p13e64ejsndb7c59e57250',
     'X-RapidAPI-Host': 'irctc1.p.rapidapi.com'
@@ -1192,7 +1192,7 @@ app.post('/status2',function(req,res){
         a_day: 1
       }
     ]
-    res.render('status2',{i:0,num:data.data.train_number,src:data.data.source,des:data.data.destination,current:data.data.current_station_name,alert:'Late by 20 min',eta:data.data.eta,etd:data.data.etd,name:data.data.seo_train_name,next:upcoming_stations[1]['station_name']})
+    res.render('status2',{i:0,data:data.data,next:'WARANGAL',nextcode:'WL',nexteta:'00:10'})
 //     const axios = require("axios");
 
 // //Srujan: dae1c185fbmsh95be9cdf96fd443p13e64ejsndb7c59e57250
@@ -1214,7 +1214,7 @@ app.post('/status2',function(req,res){
 // }
 //   console.log('Current station name: '+response.data.data.current_station_name.slice(0,-1)+'\nCurrent Station Code:'+response.data.data.current_station_code)
 
-//   res.render('status2',{i:0,num:response.data.data.train_number,src:response.data.data.source,des:response.data.data.destination,current:response.data.data.current_station_name,alert:response.data.data.new_alert_msg})
+// res.render('status2',{i:0,data:response.data.data,next:response.data.data.upcoming_stations[1].station_name,nextcode:response.data.data.upcoming_stations[1].station_code,nexteta:response.data.data.upcoming_stations[1].eta})
 //   }).catch(function (error) {
 // 	console.error(error);
 //     res.render('status2',{i:2,num:'',src:'',des:'',current:'',alert:''});

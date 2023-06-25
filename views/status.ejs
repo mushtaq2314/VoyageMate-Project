@@ -148,8 +148,10 @@
 			<br> <input type="text" name="trno" placeholder="Enter train number">
 			<br>
 			<br>
-			<input type="date" name="date" placeholder="Enter Date">
-			<br>
+			<select name="date" style="border: 1px solid black;">
+				<option value="0">Started Today</option>
+				<option value="1">Started Yesterday</option>
+			</select>			<br>
 			<button type="submit" style="margin-top: 20px;background-color: blueviolet;color: white;border: none;padding:5px 10px;">Submit</button>
 		</form>
 		<div>
@@ -204,6 +206,6 @@
 		
 	</div><%}%>
 <% if(i===2){%>
-	<p style="text-align: center; color:'red';" ><i class="fas fa triangle-eclamation"></i> Invalid Train Number</p><%}%>
+	<p style="text-align: center; color:'red';" ><i class="fas fa triangle-eclamation"></i> Invalid Train Number or Date</p><%}%>
 			<div id="ftr"><%-include('footer')-%></div>
 </body>
