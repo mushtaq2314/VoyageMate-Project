@@ -1,166 +1,270 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <title>IRCTC</title>
-  <link rel="Shortcut Icon" type="x-icon" href="train.ico">
-  <!-- <link rel="stylesheet" href="style_home.css" /> -->
-  <!-- Font Awesome Cdn Link -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<meta charset="UTF-8" />
+	<title>IRCTC</title>
+	<link rel="Shortcut Icon" type="x-icon" href="train.ico">
+	<!-- <link rel="stylesheet" href="style_home.css" /> -->
+	<!-- Font Awesome Cdn Link -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
-<style>
-    @import url('https://fonts.googleapis.com/css?family=Poppins: 200,300,400,500,600,700,800,900&display=swap');
-*{
-	margin: 0;
-	padding: 0;
-	outline: none;
-	border: none;
-	text-decoration: none;
-	box-sizing: border-box;
-	font-family: "Poppins", sans-serif;
-}
-body{
-	background: #f6f5f7;
-}
-.container{
-	display: flex;
-}
-nav{
-	position: relative;
-	top: 0;
-	bottom: 0;
-	height: 100vh;
-	left: 0;
-	background: #ffffff;
-	width: 250px;
-	overflow: hidden;
-	box-shadow: 0 20px 35px rgba(0,0,0,0.1);
-}
-.logo{
-	text-align: center;
-	display: flex;
-	margin: 10px 0 0 10px;
-}
-.logo span{
-	font-weight: bold;
-	font-size: 18px;
-	text-transform: uppercase;
-	margin-top: 13px;
-}
-a{
-    border-bottom: 1px solid blueviolet;
+	<style>
+		@import url('https://fonts.googleapis.com/css?family=Poppins: 200,300,400,500,600,700,800,900&display=swap');
 
-	position: relative;
-	color: blueviolet;
-	font-size: 14px;
-	display: table;
-	width: 288px;
-	padding: 10px;
-	animation: animate 0.35s;
-}
-@keyframes animate{
-	from{
-		transform: rotateX(90deg);
-	}
-	to{
-		transform: rotateX(0deg);
-	}
-}
-ab{
-	position: relative;
-	color: #333;
-	background-color: white;
-	font-size: 14px;
-	display: table;
-	width: 288px;
-	padding: 10px;
-	cursor: context-menu;;
-}
-.fa {
-  padding: 20px;
-  font-size: 30px;
-  width: 50px;
-  text-align: center;
-  text-decoration: none;
-}
-nav .fas{
-	position: relative;
-	width: 70px;
-	height: 40px;
-	top: 10px;
-	font-size: 20px;
-	text-align: center;
-}
-.nav-item{
-	position: relative;
-	top: 8px;
-	margin-left: 10px;
-}
-a:hover{
-	background: blueviolet;
-	color: white;
-	transition: 0.35s ease;
-}
-.logout{
-	position: absolute;
-	bottom: 0;
-}
-h2{
-	position: absolute;
-	top: 50px;
-	left: 750px;
-}
-h3{
-	position: absolute;
-	top: 100px;
-	left: 800px;
-}
-</style>
+		* {
+			margin: 0;
+			padding: 0;
+			outline: none;
+			border: none;
+			text-decoration: none;
+			box-sizing: border-box;
+			font-family: "Poppins", sans-serif;
+		}
+
+		body {
+			background: #f6f5f7;
+		}
+
+		.container {
+			display: flex;
+			position: fixed;
+		}
+
+		nav {
+			position: relative;
+			top: 0;
+			bottom: 0;
+			height: 100vh;
+			left: 0;
+			background: #ffffff;
+			width: 250px;
+			overflow: hidden;
+			box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+		}
+
+		.logo {
+			text-align: center;
+			display: flex;
+			margin: 10px 0 0 10px;
+		}
+
+		.logo span {
+			font-weight: bold;
+			font-size: 18px;
+			text-transform: uppercase;
+			margin-top: 13px;
+		}
+
+		a {
+			border-bottom: 1px solid blueviolet;
+
+			position: relative;
+			color: blueviolet;
+			font-size: 14px;
+			display: table;
+			width: 288px;
+			padding: 10px;
+			animation: animate 0.35s;
+		}
+
+		@keyframes animate {
+			from {
+				transform: rotateX(90deg);
+			}
+
+			to {
+				transform: rotateX(0deg);
+			}
+		}
+
+		ab {
+			position: relative;
+			color: #333;
+			background-color: white;
+			font-size: 14px;
+			display: table;
+			width: 288px;
+			padding: 10px;
+			cursor: context-menu;
+			;
+		}
+
+		.fa {
+			padding: 20px;
+			font-size: 30px;
+			width: 50px;
+			text-align: center;
+			text-decoration: none;
+		}
+
+		nav .fas {
+			position: relative;
+			width: 70px;
+			height: 40px;
+			top: 10px;
+			font-size: 20px;
+			text-align: center;
+		}
+
+		.nav-item {
+			position: relative;
+			top: 8px;
+			margin-left: 10px;
+		}
+
+		a:hover {
+			background: blueviolet;
+			color: white;
+			transition: 0.35s ease;
+		}
+
+		.logout {
+			position: absolute;
+			bottom: 0;
+		}
+
+		.card {
+			position: relative;
+			display: inline-block;
+			background-color: white;
+			padding: 10px;
+			width: 45%;
+			height: fit-content;
+			margin-left: 45px;
+			margin-top: 15px;
+			margin-bottom: 15px;
+			box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+			border-radius: 10px;
+		}
+
+		.outer {
+			background-color: #f6f5f7;
+			position: relative;
+			left: 250px;
+			width: 1260px;
+			height: 745px;
+		}
+
+		#show {
+			text-decoration: underline;
+			position: relative;
+			left: 40%;
+			cursor: pointer;
+			cursor: pointer;
+			background-color: white;
+		}
+		.passengers-details {
+  			display: none;
+		}
+		table th tr td{
+			border: 1px solid black;
+		}
+	</style>
 </head>
+
 <body>
 	<div class="container">
 		<nav>
 			<ul>
-				<li style="width: 100%;margin-top: -10px;margin-left: -10px;"><ab href="/index" class="logo">
-					<!-- <img src="train.ico" alt="" > -->
-					<span class="nav-item" style="color: blueviolet;font-size: 35px;padding-left: 40px;margin-top:-5px ;padding-bottom: 5px;">IRCTC</span>
-				</ab></li>
+				<li style="width: 100%;margin-top: -10px;margin-left: -10px;">
+					<ab href="/index" class="logo">
+						<!-- <img src="train.ico" alt="" > -->
+						<span class="nav-item"
+							style="color: blueviolet;font-size: 35px;padding-left: 40px;margin-top:-5px ;padding-bottom: 5px;">IRCTC</span>
+					</ab>
+				</li>
 				<li><a href="/dashboard" style="border-top: 1px solid black;">
-					<i class="fas fa-home"></i>
-					<span class="nav-item">Home</span>
-				</a></li>
-				<li><a href="/profile" >
-					<i class="fas fa-user"></i>
-					<span class="nav-item">Profile</span>
-				</a></li>
-				<li><a href="/status2" >
-					<i class="fas fa-map-marker-alt" ></i>
-					<span class="nav-item">Live Running Status</span>
-				</a></li>
-				<li><a href="/book" >
-					<i class="fas fa-ticket"></i>
-					<span class="nav-item">Book Ticket</span>
-				</a></li>
+						<i class="fas fa-home"></i>
+						<span class="nav-item">Home</span>
+					</a></li>
+				<li><a href="/profile">
+						<i class="fas fa-user"></i>
+						<span class="nav-item">Profile</span>
+					</a></li>
+				<li><a href="/status2">
+						<i class="fas fa-map-marker-alt"></i>
+						<span class="nav-item">Live Running Status</span>
+					</a></li>
+				<li><a href="/book">
+						<i class="fas fa-ticket"></i>
+						<span class="nav-item">Book Ticket</span>
+					</a></li>
 				<li><a href="/pnr">
-					<i class="fas fa-train"></i>
-					<span class="nav-item">Check PNR status</span>
-				</a></li>
-				<li><a href="/history"  style="background-color: blueviolet; color: white;">
-					<i class="fas fa-clock"></i>
-					<span class="nav-item">Travel History</span>
-				</a></li>
+						<i class="fas fa-train"></i>
+						<span class="nav-item">Check PNR status</span>
+					</a></li>
+				<li><a href="/history" style="background-color: blueviolet; color: white;">
+						<i class="fas fa-clock"></i>
+						<span class="nav-item">Travel History</span>
+					</a></li>
 				<li><a href="/help">
-					<i class="fas fa-question-circle"></i>
-					<span class="nav-item">Help</span>
-				</a></li>
+						<i class="fas fa-question-circle"></i>
+						<span class="nav-item">Help</span>
+					</a></li>
 				<li><a href="/logout" class="logout">
-					<i class="fas fa-sign-out-alt"></i>
-					<span class="nav-item">Logout</span>
-				</a></li>
+						<i class="fas fa-sign-out-alt"></i>
+						<span class="nav-item">Logout</span>
+					</a></li>
 			</ul>
-		</nav>	
+		</nav>
+	</div>
+	<div class="outer">
+		<h1 style="text-align: center;">Check your travel history</h1>
+		<% for(var i=0;i< 10;i++){%>
+			<div class="card">
+				<h1 style="background-color: blueviolet;width: fit-content;color: white;border-radius: 4px;padding: 2px 8px;">17064</h1>
+				<h3>Ajanta Express</h3>
+				<div style="position: absolute;right: 20px;top: 50px;"><span
+						style="background-color: yellow;text-align: center;font-weight: bolder;padding: 2px;">SC</span><i
+						class="fa-solid fa-arrow-right-long"></i>
+					<span style="background-color: yellow;text-align: center;font-weight: bolder;">NZB</span>
+				</div>
+				<span style="font-weight: bold;position: absolute;right: 5px;padding: 4px;top: 10px;">Date:
+					01-07-2024</span>
+
+				<span>Departure: 18:50</span><span style="position: absolute;right: 20px;top: 80px;">Arrival:
+					21:30</span>
+				<br>
+				<button id="show" onclick="togglePassengers(this)" >Show Passengers</button>
+				<div class="passengers-details">
+					
+				</div>
+
+			</div>
+			<%}%>
+
+
 	</div>
 </body>
 
 </html>
+<script>
+	function togglePassengers(button) {
+  var passengersDiv = button.nextElementSibling;
+//   var data = `<%- (data.h)%>`
+//   console.log(data)
+  passengersDiv.style.display = passengersDiv.style.display === 'none' ? 'block' : 'none';
+  passengersDiv.innerHTML=`<table style="border:2px solid black;width:100%"> 
+	<th style="border:2px solid black;text-align:center">Name</th>
+	<th style="border:2px solid black;text-align:center">Age</th>
+	<th style="border:2px solid black;text-align:center">Gender</th>
+	<th style="border:2px solid black;text-align:center">Berth</th>
+	<tr>
+		<td style="border:2px solid black;text-align:center">Mushtaq</td>
+		<td style="border:2px solid black;text-align:center">19</td>
+		<td style="border:2px solid black;text-align:center">M</td>
+		<td style="border:2px solid black;text-align:center">S1 23</td>
+	</tr>
+	<tr>
+		<td style="border:2px solid black;text-align:center">Gopi</td>
+		<td style="border:2px solid black;text-align:center">19</td>
+		<td style="border:2px solid black;text-align:center">M</td>
+		<td style="border:2px solid black;text-align:center">S1 24</td>
+	</tr>
+	</table>
+	`
+
+}
+</script>
