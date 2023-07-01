@@ -212,7 +212,7 @@
 	</div>
 	<div class="outer">
 		<h1 style="text-align: center;">Check your travel history</h1>
-		<% for(var i=0;i< 10;i++){%>
+		<% for(var i=0;i< 101;i++){%>
 			<div class="card">
 				<h1 style="background-color: blueviolet;width: fit-content;color: white;border-radius: 4px;padding: 2px 8px;">17064</h1>
 				<h3>Ajanta Express</h3>
@@ -243,8 +243,7 @@
 <script>
 	function togglePassengers(button) {
   var passengersDiv = button.nextElementSibling;
-//   var data = `<%- (data.h)%>`
-//   console.log(data)
+
   passengersDiv.style.display = passengersDiv.style.display === 'none' ? 'block' : 'none';
   passengersDiv.innerHTML=`<table style="border:2px solid black;width:100%"> 
 	<th style="border:2px solid black;text-align:center">Name</th>
