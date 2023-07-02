@@ -59,8 +59,8 @@ const openbtns = document.querySelectorAll('.openbtn')
 		  <input type="text" name="trname" value="${pt[1].textContent.trim()}">
 		  <input type="text" name="src" value=${pt[4].textContent}>
 		  <input type="text" name="dst" value=${pt[5].textContent}>
-		  <input type="text" name="arrival" value=${pt[7].textContent}>
-		  <input type="text" name="departure" value=${pt[8].textContent}>
+		  <input type="text" name="arrival" value=${pt[8].textContent}>
+		  <input type="text" name="departure" value=${pt[7].textContent}>
 		  <input type="text" name="date" value=${pt[2].textContent}>`
 		container.appendChild(newdiv)
 
