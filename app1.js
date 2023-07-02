@@ -59,18 +59,15 @@ const ProfileSchema=new mangoose.Schema({
   })
   const ProfileModel=mangoose.model("ProfileModel",ProfileSchema);
   const TicketSchema=new mangoose.Schema({
-    TrainDetails:{
-    id:String,
+    key_id:String,
       train_name:String,
       train_no:String,
       source:String,
       destination:String,
       departure:String,
       arrival:String,
-      date:String
-    },
-    PassengerDetails:[{name:String,age:String,gender:String,berth_no:String,id:String},{name:String,age:String,gender:String,berth_no:String,id:String},{name:String,age:String,gender:String,berth_no:String,id:String},{name:String,age:String,gender:String,berth_no:String,id:String},{name:String,age:String,gender:String,berth_no:String,id:String},{name:String,age:String,gender:String,berth_no:String,id:String},{name:String,age:String,gender:String,berth_no:String,id:String},{name:String,age:String,gender:String,berth_no:String,id:String},{name:String,age:String,gender:String,berth_no:String,id:String},{name:String,age:String,gender:String,berth_no:String,id:String},{name:String,age:String,gender:String,berth_no:String,id:String},{name:String,age:String,gender:String,berth_no:String,id:String},{name:String,age:String,gender:String,berth_no:String,id:String},{name:String,age:String,gender:String,berth_no:String,id:String}]
-  });
+      date:String,
+    PassengerDetails:{name:[],age:[],gender:[],berth_no:[],id:[]}});
   const TicketModel=mangoose.model("TicketSchema",TicketSchema);
   ProfileSchema.plugin(passportLocalMongoose);
   ProfileSchema.plugin(findOrCreate);
@@ -379,7 +376,7 @@ app.get("/secrets", function(req, res){
     } else {
       if (foundUsers) {
         // console.log(foundUsers)
-        // id1=foundUsers;
+        // id1=foundUsers
         console.log(2);
         console.log(id1)
         console.log(2)
@@ -1237,14 +1234,26 @@ app.post('/status2',function(req,res){
 // });
 //   res.send('invalid train number');
 })
-
+var ticket="";
 //////////////////////////////////////////////////////////////////////////////////////////
-app.post('/book',function(req,res){
-    console.log(req.body);
+app.post('/book',async function(req,res){
+    ticket=(req.body);
     const date = new Date(req.body.date);
     const day = date.getDay();
     const dayNames = ["Sun", "Mon", "Tue","Wed","Thu","Fri","Sat"];  
-    console.log("It is a",dayNames[day])
+    console.log("It is a",dayNames[day]);
+    console.log(id1);
+    await TicketModel.create({
+      key_id:id1.id,
+      train_number:ticket.trno,
+      source:ticket.src,
+      destination:ticket.dst,
+      arrival:ticket.arrival,
+      departure:ticket.departure,
+      date:ticket.date,
+      PassengerDetails:{name:ticket.name,age:ticket.age,gender:ticket.gender}
+    })
+    console.log(ticket);
     data = 
 {
   status: true,
@@ -1931,7 +1940,7 @@ app.post('/book',function(req,res){
 res.render('book',{data:data.data,src:req.body.src,dst:req.body.dst,day:dayNames[day],date:req.body.date});
     // res.render('book')
 
-//const axios = require("axios");
+//     const axios = require("axios");
 
 // const options = {
 //   method: 'GET',
@@ -2177,6 +2186,8 @@ app.get("/dashboard",function(req,res){
     if(req.cookies.jwt){
         console.log("there");
         var name=id1;
+        console.log("id");
+        console.log(id);
         console.log("KI");
         res.render('dashboard',{name:name.displayName,mailid:name.displayName+"@gmail.com"});
     }
