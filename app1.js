@@ -242,7 +242,16 @@ app.get("/book",function(request,response){
 app.get("/pnr",function(request,response){
     response.render("pnr",{i:1});
 })
-app.get("/history",function(request,response){
+app.get("/history",async function(request,response){
+  console.log("working");
+  TicketModel.find({"key_id":id1.id}, function(err, foundUsers){
+    if (err){
+      console.log(err);
+    } else {
+      if (foundUsers) {
+        console.log(foundUsers);
+      }
+    }});
     response.render("history");
 })
 app.get("/help",function(request,response){
