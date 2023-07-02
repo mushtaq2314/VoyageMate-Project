@@ -156,7 +156,7 @@
 			background-color: white;
 		}
 		.passengers-details {
-  			display: none;
+  			display: block;
 		}
 		table th tr td{
 			border: 1px solid black;
@@ -212,20 +212,20 @@
 	</div>
 	<div class="outer">
 		<h1 style="text-align: center;">Check your travel history</h1>
-		<% for(var i=0;i< 101;i++){%>
+		<% data.forEach(function(i) {%>
 			<div class="card">
-				<h1 style="background-color: blueviolet;width: fit-content;color: white;border-radius: 4px;padding: 2px 8px;">17064</h1>
-				<h3>Ajanta Express</h3>
+				<h1 style="background-color: blueviolet;width: fit-content;color: white;border-radius: 4px;padding: 2px 8px;"><%=i.train_no%></h1>
+				<h3><%= i.train_name%></h3>
 				<div style="position: absolute;right: 20px;top: 50px;"><span
-						style="background-color: yellow;text-align: center;font-weight: bolder;padding: 2px;">SC</span><i
+						style="background-color: yellow;text-align: center;font-weight: bolder;padding: 2px;"><%=i.source%></span><i
 						class="fa-solid fa-arrow-right-long"></i>
-					<span style="background-color: yellow;text-align: center;font-weight: bolder;">NZB</span>
+					<span style="background-color: yellow;text-align: center;font-weight: bolder;"><%=i.destination%></span>
 				</div>
-				<span style="font-weight: bold;position: absolute;right: 5px;padding: 4px;top: 10px;">Date:
-					01-07-2024</span>
+				<span style="font-weight: bold;position: absolute;right: 5px;padding: 4px;top: 10px;">Date: <span id="date"><%=i.date%></span>
+					</span>
 
-				<span>Departure: 18:50</span><span style="position: absolute;right: 20px;top: 80px;">Arrival:
-					21:30</span>
+				<span>Departure: <%=i.departure%></span><span style="position: absolute;right: 20px;top: 80px;">Arrival:
+					<%=i.arrival%></span>
 				<br>
 				<button id="show" onclick="togglePassengers(this)" >Show Passengers</button>
 				<div class="passengers-details">
@@ -233,7 +233,7 @@
 				</div>
 
 			</div>
-			<%}%>
+			<%})%>
 
 
 	</div>
@@ -243,27 +243,33 @@
 <script>
 	function togglePassengers(button) {
   var passengersDiv = button.nextElementSibling;
+  var data = `<%- JSON.stringify(data) %>`;
+  data = JSON.parse(data);
+  var card = button.closest(".card");
+  var dt = card.querySelector("#date").textContent;
+  var passengers = data.find((item) => item.date === dt).PassengerDetails;
 
-  passengersDiv.style.display = passengersDiv.style.display === 'none' ? 'block' : 'none';
-  passengersDiv.innerHTML=`<table style="border:2px solid black;width:100%"> 
-	<th style="border:2px solid black;text-align:center">Name</th>
-	<th style="border:2px solid black;text-align:center">Age</th>
-	<th style="border:2px solid black;text-align:center">Gender</th>
-	<th style="border:2px solid black;text-align:center">Berth</th>
-	<tr>
-		<td style="border:2px solid black;text-align:center">Mushtaq</td>
-		<td style="border:2px solid black;text-align:center">19</td>
-		<td style="border:2px solid black;text-align:center">M</td>
-		<td style="border:2px solid black;text-align:center">S1 23</td>
-	</tr>
-	<tr>
-		<td style="border:2px solid black;text-align:center">Gopi</td>
-		<td style="border:2px solid black;text-align:center">19</td>
-		<td style="border:2px solid black;text-align:center">M</td>
-		<td style="border:2px solid black;text-align:center">S1 24</td>
-	</tr>
-	</table>
-	`
-
+  if (passengersDiv.style.display === 'none') {
+    passengersDiv.style.display = 'block';
+  } else {
+    passengersDiv.style.display = passengersDiv.style.display === 'none' ? 'block' : 'none';
+  }
+  passengersDiv.innerHTML = `
+    <table style="border:2px solid black;width:100%">
+      <th style="border:2px solid black;text-align:center">Name</th>
+      <th style="border:2px solid black;text-align:center">Age</th>
+      <th style="border:2px solid black;text-align:center">Gender</th>
+      <th style="border:2px solid black;text-align:center">Berth</th>
+      ${passengers.name.map((name, index) => `
+        <tr>
+          <td style="border:2px solid black;text-align:center">${name}</td>
+          <td style="border:2px solid black;text-align:center">${passengers.age[index]}</td>
+          <td style="border:2px solid black;text-align:center">${passengers.gender[index]}</td>
+          <td style="border:2px solid black;text-align:center">${passengers.berth_no[index]}</td>
+        </tr>
+      `).join('')}
+    </table>
+  `;
 }
+
 </script>

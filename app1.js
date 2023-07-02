@@ -250,9 +250,9 @@ app.get("/history",async function(request,response){
     } else {
       if (foundUsers) {
         console.log(foundUsers);
+        response.render("history",{data:foundUsers});
       }
     }});
-    response.render("history");
 })
 app.get("/help",function(request,response){
     response.render("help");
