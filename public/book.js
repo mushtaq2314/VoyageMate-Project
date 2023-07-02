@@ -56,7 +56,7 @@ const openbtns = document.querySelectorAll('.openbtn')
 		newdiv.className='tdata'
 		newdiv.innerHTML=`
 		<input type="text" name="trno" value=${pt[0].textContent}>
-		  <input type="text" name="trname" value=${pt[1].textContent}>
+		  <input type="text" name="trname" value="${pt[1].textContent.trim()}">
 		  <input type="text" name="src" value=${pt[4].textContent}>
 		  <input type="text" name="dst" value=${pt[5].textContent}>
 		  <input type="text" name="arrival" value=${pt[7].textContent}>
