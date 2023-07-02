@@ -245,6 +245,9 @@
 			top: -30px;
 			cursor: pointer;
 		}
+		.tdata{
+			display: none;
+		}
 	</style>
 </head>
 
@@ -388,6 +391,7 @@
 			<p>To: <span id="dst"></span></p>
 			<p>Departure: <span id="dept"></span></p>
 			<p>Arrival: <span id="arr"></span></p>
+			<p>Date: <span id="date"></span></p>
 			<br>
 			<h3>Ticket Fares:-</h3>
 			<div id="fares">
@@ -400,7 +404,7 @@
 		<div id="passengerDetails" class="ocard2">
 			<h1>Enter Passenger Details</h1>
 			<form action="/book" method="post" id="passengerForm">
-
+				
 				<div id="passengerContainer">
 					<div class="passenger" style="margin-top: 5px;height: 40px;" >
 						<input type="text" name="name[]" placeholder="Passenger Name">
@@ -411,7 +415,7 @@
 				</div>
 
 				<div id="addPassengerBtn" style="background-color: aqua;cursor: pointer;width: fit-content;"><i class="fa-solid fa-plus " style="color: black;"></i> Add Passenger</div>
-				<button type="submit" class="pdf">Pay & Book</button>
+				<button class="pdf">Pay & Book</button>
 			</form>
 			<button class="closebtn2"
 				style="position: absolute;right: 20px;top: 30px;display: flex; cursor: pointer;"><i

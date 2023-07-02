@@ -28,6 +28,7 @@ const openbtns = document.querySelectorAll('.openbtn')
 	bookingCard.querySelector('#dst').innerHTML=pt[5].textContent
 	bookingCard.querySelector('#arr').innerHTML=pt[8].textContent
 	bookingCard.querySelector('#dept').innerHTML=pt[7].textContent
+	bookingCard.querySelector('#date').innerHTML=pt[2].textContent
 
 	 //Add passenger button
 	 document.getElementById('addPassengerBtn').addEventListener('click', function() {
@@ -47,35 +48,45 @@ const openbtns = document.querySelectorAll('.openbtn')
     container.removeChild(newPassengerDiv);})
 	  });
 	  
-	  document.getElementById('passengerForm').addEventListener('submit', function(event) {
-		event.preventDefault();
-	  });
-
-
 	const passengerDetails = document.querySelector('.passengerDetails')
 	passengerDetails.addEventListener('click',()=>{
 		pdetails.style.display='block'
+		var newdiv=document.createElement('div')
+		var container = document.getElementById('passengerForm');
+		newdiv.className='tdata'
+		newdiv.innerHTML=`
+		<input type="text" name="trno" value=${pt[0].textContent}>
+		  <input type="text" name="trname" value=${pt[1].textContent}>
+		  <input type="text" name="src" value=${pt[4].textContent}>
+		  <input type="text" name="destination" value=${pt[5].textContent}>
+		  <input type="text" name="arrival" value=${pt[7].textContent}>
+		  <input type="text" name="departure" value=${pt[8].textContent}>
+		  <input type="text" name="date" value=${pt[2].textContent}>`
+		container.appendChild(newdiv)
 
 	})
 	
+
 	// Creating document definition
 	const print = document.querySelector(".pdf");
 	print.addEventListener('click',()=>{
-		const details = pdetails.querySelectorAll('input')
+		document.getElementById('passengerForm').addEventListener('submit', function(event) {
+			event.preventDefault();})
+		const details = document.getElementById('passengerContainer').querySelectorAll('input')
 		console.log(details)
-	var docDefinition = {
-  pageOrientation:'auto',
-  pageMargins: [40, 40, 40, 60],
-  content: [
-    {
-      text: 'IRCTC',
-      style: 'irc'
-    },
-    {
-      text: 'Booking Details',
-      style: 'header1'
-    },
-    {
+		var docDefinition = {
+			pageOrientation:'auto',
+			pageMargins: [40, 40, 40, 60],
+			content: [
+				{
+					text: 'IRCTC',
+					style: 'irc'
+				},
+				{
+					text: 'Booking Details',
+					style: 'header1'
+				},
+				{
 		style:'data',
 		text: 'Train Number: ' + pt[0].textContent.replace('\n','').trim()+'\tTrain Name: ' + pt[1].textContent.replace('\n','').trim()+'\tBoarding At: ' + pt[4].textContent.replace('\n','').trim()+'\tDate of Journey : ' + pt[2].textContent.replace('\n','').trim()
     },
@@ -88,75 +99,76 @@ const openbtns = document.querySelectorAll('.openbtn')
 		style: 'header2'
     },
 	{
-	table: {
-		style:table,
-        headerRows: 1,
-        widths: [ '*', 'auto', 100, '*' ],
-
-        body: [
-          [ {text:'Name',style:'header'},{text:'Age',style:'header'},{text:'Gender',style:'header'},{text:'Berth No.',style:'header'}],
-        ]
-      }
+		table: {
+			style:table,
+			headerRows: 1,
+			widths: [ '*', 'auto', 100, '*' ],
+			
+			body: [
+				[ {text:'Name',style:'header'},{text:'Age',style:'header'},{text:'Gender',style:'header'},{text:'Berth No.',style:'header'}],
+			]
+		}
 	},
-  ],
-  styles: {
-    header: {
-      fontSize: 14,
-      bold: true,
-	  fillColor:'blueviolet',
-	  alignment:'center',
-	  color:'white'
-    },
-    header1: {
-      fontSize: 18,
-      bold: true,
-      marginBottom: 10,
-	  decoration:'underline'
-    },
-	irc:{
-		fontSize:20,
-		bold:true,
-		marginLeft:220,
-		marginBottom:10,
-		fillColor:'blueviolet',
-	},
-	passenger:{
-		marginLeft:240,
-		marginBottom:5,
-		fontSize:10
-	},
-	header2:{
-		fontSize: 18,
-      bold: true,
-      marginBottom: 10,
-	  decoration:'underline',
-	},
-	data:{
-		fontSize:10,
-		marginBottom:5
-	},
-	table:{
-		alignment:'center'
-	},
-	cell:{
-		fillColor:'cyan',
-		alignment:'center'
-	}
-  }
+			],
+			styles: {
+				header: {
+					fontSize: 14,
+					bold: true,
+					fillColor:'blueviolet',
+					alignment:'center',
+					color:'white'
+				},
+				header1: {
+					fontSize: 18,
+					bold: true,
+					marginBottom: 10,
+					decoration:'underline'
+				},
+				irc:{
+					fontSize:20,
+					bold:true,
+					marginLeft:220,
+					marginBottom:10,
+					fillColor:'blueviolet',
+				},
+				passenger:{
+					marginLeft:240,
+					marginBottom:5,
+					fontSize:10
+				},
+				header2:{
+					fontSize: 18,
+					bold: true,
+					marginBottom: 10,
+					decoration:'underline',
+				},
+				data:{
+					fontSize:10,
+					marginBottom:5
+				},
+				table:{
+					alignment:'center'
+				},
+				cell:{
+					fillColor:'cyan',
+					alignment:'center'
+				}
+			}
 };
 //Entering passenger details into table
 
 var tableBody = docDefinition.content.find(item => item.table && item.table.body);
-  if (tableBody) {
-    for (var i = 0; i < details.length; i += 3) {
-      tableBody.table.body.push([{text:details[i].value,style:'cell'},{text:details[i+1].value,style:'cell'},{text:details[i+2].value,style:'cell'},{text:`A1 ${i+50}`,style:'cell'}]);
+if (tableBody) {
+	for (var i = 0; i < details.length; i += 3) {
+		tableBody.table.body.push([{text:details[i].value,style:'cell'},{text:details[i+1].value,style:'cell'},{text:details[i+2].value,style:'cell'},{text:`A1 ${i+50}`,style:'cell'}]);
     }
-  }
+}
 
-      // Generate the PDF document
-      pdfMake.createPdf(docDefinition).open();
-    //   pdfMake.createPdf(docDefinition).download('Ticket');
-	})
+// Generate the PDF document
+pdfMake.createPdf(docDefinition).open();
+//   pdfMake.createPdf(docDefinition).download('Ticket');
+document.getElementById('passengerForm').submit()
+})
 
 	 /*Without Using Ticket Fares API*/
 
