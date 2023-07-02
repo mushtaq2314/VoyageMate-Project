@@ -1252,6 +1252,7 @@ app.post('/book',async function(req,res){
     const dayNames = ["Sun", "Mon", "Tue","Wed","Thu","Fri","Sat"];  
     console.log("It is a",dayNames[day]);
     console.log(id1);
+    if(ticket.name){
     await TicketModel.create({
       key_id:id1.id,
       train_number:ticket.trno,
@@ -1262,6 +1263,7 @@ app.post('/book',async function(req,res){
       date:ticket.date,
       PassengerDetails:{name:ticket.name,age:ticket.age,gender:ticket.gender}
     })
+  }
     console.log(ticket);
     data = 
 {
