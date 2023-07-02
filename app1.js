@@ -1255,7 +1255,8 @@ app.post('/book',async function(req,res){
     if(ticket.name){
     await TicketModel.create({
       key_id:id1.id,
-      train_number:ticket.trno,
+      train_no:ticket.trno,
+      train_name:ticket.trname,
       source:ticket.src,
       destination:ticket.dst,
       arrival:ticket.arrival,
