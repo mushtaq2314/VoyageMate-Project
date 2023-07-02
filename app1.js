@@ -58,6 +58,20 @@ const ProfileSchema=new mangoose.Schema({
   gender:String
   })
   const ProfileModel=mangoose.model("ProfileModel",ProfileSchema);
+  const TicketSchema=new mangoose.Schema({
+    TrainDetails:{
+    id:String,
+      train_name:String,
+      train_no:String,
+      source:String,
+      destination:String,
+      departure:String,
+      arrival:String,
+      date:String
+    },
+    PassengerDetails:[{name:String,age:String,gender:String,berth_no:String,id:String},{name:String,age:String,gender:String,berth_no:String,id:String},{name:String,age:String,gender:String,berth_no:String,id:String},{name:String,age:String,gender:String,berth_no:String,id:String},{name:String,age:String,gender:String,berth_no:String,id:String},{name:String,age:String,gender:String,berth_no:String,id:String},{name:String,age:String,gender:String,berth_no:String,id:String},{name:String,age:String,gender:String,berth_no:String,id:String},{name:String,age:String,gender:String,berth_no:String,id:String},{name:String,age:String,gender:String,berth_no:String,id:String},{name:String,age:String,gender:String,berth_no:String,id:String},{name:String,age:String,gender:String,berth_no:String,id:String},{name:String,age:String,gender:String,berth_no:String,id:String},{name:String,age:String,gender:String,berth_no:String,id:String}]
+  });
+  const TicketModel=mangoose.model("TicketSchema",TicketSchema);
   ProfileSchema.plugin(passportLocalMongoose);
   ProfileSchema.plugin(findOrCreate);
   app.use(session({
