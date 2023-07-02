@@ -1931,7 +1931,7 @@ app.post('/book',function(req,res){
 res.render('book',{data:data.data,src:req.body.src,dst:req.body.dst,day:dayNames[day],date:req.body.date});
     // res.render('book')
 
-//     const axios = require("axios");
+//const axios = require("axios");
 
 // const options = {
 //   method: 'GET',
