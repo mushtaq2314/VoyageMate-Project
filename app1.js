@@ -10,7 +10,7 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
 const findOrCreate = require('mongoose-findorcreate');
 var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
-var id1="";
+var id1={};
 var ourid="";
 app=express()
 users=[]
@@ -215,7 +215,7 @@ app.get("/profile",async function(request,response){
         }
         else{
           docs=docs[0];
-        response.render("profile",{Address:docs.address,firstname:docs.firstname,gender:docs.gender,lastname:docs.lastname,dob:docs.mail,email:docs.mail,phno:docs.phno,Address:docs.address});
+        response.render("profile",{Address:docs.address,firstname:docs.firstname,gender:docs.gender,lastname:docs.lastname,dob:docs.dob,email:docs.mail,phno:docs.phno,Address:docs.address});
         }}
 })
 })
@@ -389,7 +389,7 @@ app.get("/secrets", function(req, res){
         console.log(2);
         console.log(id1)
         console.log(2)
-        res.render('dashboard',{name:id1.displayName,mailid:id1.name.familyName+"@gmail.com"});
+        res.render('dashboard',{name:id1.displayName,mailid:id1.displayName+"@gmail.com"});
       }
     }
   });
@@ -2149,13 +2149,17 @@ app.get("/login",function(req,res){
     res.render("login");
 })
 app.post("/login", async function(req,res){
+  const br=(req.body);
     if(req.body.Name){
         try{
+        // id1.id=br.mail;
+        // id1.displayName=br.Name;
+        // id1.mail=br.mail
             console.log("logging in");
         await Model.create({
-            name:req.body.Name,
-            mail:req.body.mail,
-            password:bcrypt.hashSync(req.body.password,salt)
+            name:br.Name,
+            mail:br.mail,
+            password:bcrypt.hashSync(br.password,salt)
         });
     }
 catch(err){
@@ -2167,12 +2171,17 @@ catch(err){
     
     for(var mn=0;mn<users.length;mn++){
         var k=users[mn]._id;
-        if(req.body.mail===users[mn].mail){
+        var br1=[];
+        br1=users[mn];
+        if(br.mail===users[mn].mail){
           ourid=users[mn].Objectid;
             console.log("came");
             console.log(users);
-           await bcrypt.compare(req.body.password,users[mn].password,function(req,response){
+           await bcrypt.compare(br.password,users[mn].password,function(req,response){
             if(response){ {
+              id1.id=br1.mail;
+                id1.displayName=br1.name;
+                id1.mail=br1.mail
                 console.log(k);
                 const token=createTOken(k);
             res.cookie('jwt',token,{httpOnly:true,maxAge:maxAge*1000});
@@ -2194,31 +2203,52 @@ catch(err){
     }
 }
 )
-app.get("/dashboard",function(req,res){
-    if(req.cookies.jwt){
-        console.log("there");
-        var name=id1;
-        console.log("id");
-        console.log(id);
-        console.log("KI");
-        res.render('dashboard',{name:name.displayName,mailid:name.displayName+"@gmail.com"});
-    }
-    else{
-        console.log("not there")
-        res.redirect("/login");
-    }
-})
+app.get("/dashboard", function(req, res) {
+  if (req.cookies.jwt) {
+    console.log("there");
+    var name = id1;
+    console.log("id");
+    console.log(id1);
+    console.log("KI");
+
+    // GETDATA(function(received) {
+    //   console.log('Received from function call', received);
+    //   res.render('dashboard', { name: name.displayName, mailid: name.displayName + "@gmail.com", data: received });
+    // });
+    received=[
+      { Name: 'Singrauli', Code: 'SGRL',Dept:'',Arr:'',trno:'',trname:'' },
+      { Name: 'Jamalpur', Code: 'JMP',Dept:'',Arr:'' ,trno:'',trname:'' },
+      { Name: 'Adoni', Code: 'AD',Dept:'17:20',Arr:'23:29',trno:'12794',trname:'Rayalseema Exp'  },
+      { Name: 'Bally', Code: 'BLY',Dept:'',Arr:'',trno:'',trname:''  },
+      { Name: 'Tirunelveli', Code: 'TEN',Dept:'15:45',Arr:'17:15(D+1)',trno:'16353',trname:'Nagercoil Weekly Exp'  },
+      { Name: 'Srikakulam', Code: 'CHE',Dept:'16:50',Arr:'09:48(D+1)',trno:'17016',trname:'Vishakha Exp'  }
+    ]
+      res.render('dashboard', { name: name.displayName, mailid: name.displayName + "@gmail.com", data: received });
+  } else {
+    console.log("not there")
+    res.redirect("/login");
+  }
+});
+
+function GETDATA(callback) {
+  const spawner = require('child_process').spawn;
+  const data_to_pass_in = [19, 1, 26, 2, 89, 1, 1];
+  const python_process = spawner('python', ['model.py', JSON.stringify(data_to_pass_in)]);
+
+  let receivedData = '';
+  python_process.stdout.on('data', function(data) {
+    receivedData += data.toString();
+  });
+
+  python_process.stdout.on('end', function() {
+    const received = JSON.parse(receivedData);
+    callback(received);
+  });
+}
+
 app.get("/logout",function(req,res){
     res.cookie('jwt','',{httpOnly:true,maxAge:0.222});
     res.redirect('/');
 })
 
-//Python Part
-const spawner = require('child_process').spawn;
 
-const data_to_pass_in = 'send this data to python file';
-const python_process = spawner('python',['model.py',JSON.stringify(data_to_pass_in)]);
-
-python_process.stdout.on('recieved',(recieved)=>{
-  console.log('Data recieved from py file is: ',recieved.toString());
-});
