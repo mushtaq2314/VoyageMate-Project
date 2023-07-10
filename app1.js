@@ -14,6 +14,14 @@ var id1={};
 var ourid="";
 app=express()
 users=[]
+var received=received=[
+  { Name: 'Singrauli', Code: 'SGRL',Dept:'',Arr:'',trno:'',trname:'' },
+  { Name: 'Jamalpur', Code: 'JMP',Dept:'',Arr:'' ,trno:'',trname:'' },
+  { Name: 'Adoni', Code: 'AD',Dept:'17:20',Arr:'23:29',trno:'12794',trname:'Rayalseema Exp'  },
+  { Name: 'Bally', Code: 'BLY',Dept:'',Arr:'',trno:'',trname:''  },
+  { Name: 'Tirunelveli', Code: 'TEN',Dept:'15:45',Arr:'17:15(D+1)',trno:'16353',trname:'Nagercoil Weekly Exp'  },
+  { Name: 'Srikakulam', Code: 'CHE',Dept:'16:50',Arr:'09:48(D+1)',trno:'17016',trname:'Vishakha Exp'  }
+];
 //Gopi
 function Alerting(k){
     alert(k);
@@ -131,7 +139,7 @@ app.get('/auth/facebook/callback',
     // Successful authentication, redirect home.
     const token=createTOken("facebook");
     res.cookie('jwt',token,{httpOnly:true,maxAge:maxAge*1000});
-    res.render('dashboard',{name:id1.displayName,mailid:id1.displayName+"@gmail.com"});
+    res.render('dashboard',{data:received,name:id1.displayName,mailid:id1.displayName+"@gmail.com"});
   });
   passport.use(new LinkedInStrategy({
     clientID: "86vwsap7tfpsrw",
@@ -184,7 +192,7 @@ app.get('/auth/linkedin/callback',
     // Successful authentication, redirect home.
     const token=createTOken("Google");
       res.cookie('jwt',token,{httpOnly:true,maxAge:maxAge*1000});
-    res.render('dashboard',{name:id1.displayName,mailid:id1.emails[0].value});
+    res.render('dashboard',{data:received,name:id1.displayName,mailid:id1.emails[0].value});
   });
 app.get("/auth/google/secrets",
   passport.authenticate('google', { failureRedirect: "/login" }),
@@ -389,7 +397,7 @@ app.get("/secrets", function(req, res){
         console.log(2);
         console.log(id1)
         console.log(2)
-        res.render('dashboard',{name:id1.displayName,mailid:id1.displayName+"@gmail.com"});
+        res.render('dashboard',{data:received,name:id1.displayName,mailid:id1.displayName+"@gmail.com"});
       }
     }
   });
@@ -2223,7 +2231,7 @@ app.get("/dashboard", function(req, res) {
       { Name: 'Tirunelveli', Code: 'TEN',Dept:'15:45',Arr:'17:15(D+1)',trno:'16353',trname:'Nagercoil Weekly Exp'  },
       { Name: 'Srikakulam', Code: 'CHE',Dept:'16:50',Arr:'09:48(D+1)',trno:'17016',trname:'Vishakha Exp'  }
     ]
-      res.render('dashboard', { name: name.displayName, mailid: name.displayName + "@gmail.com", data: received });
+      res.render('dashboard', { data:received,name: name.displayName, mailid: name.displayName + "@gmail.com", data: received });
   } else {
     console.log("not there")
     res.redirect("/login");
