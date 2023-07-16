@@ -207,7 +207,7 @@
 			color: white;
 			position: relative;
 			left: 180px;
-			top: 100px;
+			top: 60px;
 			border-radius: 10px;
 			cursor: pointer;
 		}
@@ -249,6 +249,22 @@
 		}
 		.tdata{
 			display: none;
+		}
+		.blockT{
+			text-align: center;
+			position: relative;
+			left: 16.5%;
+			cursor: pointer;
+			top: 100px;
+			text-decoration: underline;
+			background-color: cyan;
+			font-size: large;
+		}
+		.blockT:hover{
+			color: white;
+		}
+		#blockT{
+			display: None;
 		}
 	</style>
 </head>
@@ -402,6 +418,14 @@
 				style="position: absolute;right: 20px;top: 30px;display: flex; cursor: pointer;"><i
 					class="fa-solid fa-circle-xmark fa-2xl"></i></button>
 			<button class="passengerDetails">Book</button>
+			<button class="blockT">Block Ticket</button>
+		</div>
+		<div class="ocard2" id="blockT">
+			<p id="blockP"></p><span id="unblock" style="text-decoration: underline;cursor: pointer;"></span>
+			<p id="blockP1"></p>
+			<button class="closebtn3"
+				style="position: absolute;right: 20px;top: 30px;display: flex; cursor: pointer;"><i
+					class="fa-solid fa-circle-xmark fa-2xl"></i></button>
 		</div>
 		<div id="passengerDetails" class="ocard2">
 			<h1>Enter Passenger Details</h1>

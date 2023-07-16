@@ -1,0 +1,73 @@
+<mxfile host="app.diagrams.net" modified="2023-07-10T06:47:46.833Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" etag="O5mOhj_K34UxeaYBPAU1" version="21.6.1" type="device">
+  <diagram name="Page-1" id="DHJUt_JddeWaX9dqEKT3">
+    <mxGraphModel dx="1615" dy="882" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="7NszuWQM0uBOrmVhDkAI-81" value="User" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="248" y="100" width="210" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="7NszuWQM0uBOrmVhDkAI-82" value="&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;b style=&quot;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&amp;nbsp;userId: int&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;/font&gt;&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&amp;nbsp; &amp;nbsp;username: string&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;&lt;/font&gt;&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp;password: string&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;&lt;/font&gt;&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&amp;nbsp; email: string&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;/font&gt;&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; firstName: string&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;/font&gt;&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;b style=&quot;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;lastName: string&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;&lt;/font&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="7NszuWQM0uBOrmVhDkAI-81">
+          <mxGeometry y="20" width="210" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="7NszuWQM0uBOrmVhDkAI-83" value="&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;b style=&quot;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;+ register():&amp;nbsp;&lt;/font&gt;&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&amp;nbsp;+ login():&amp;nbsp;&lt;/font&gt;&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&amp;nbsp;+ logout():&amp;nbsp;&lt;/font&gt;&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&amp;nbsp;+ bookTicket(journeyId: int):&amp;nbsp;&lt;/font&gt;&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;b style=&quot;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&amp;nbsp;+ cancelTicket(ticketId: int):&amp;nbsp;&lt;/font&gt;&lt;/b&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="248" y="250" width="210" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="7NszuWQM0uBOrmVhDkAI-84" value="Train" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="638" y="100" width="220" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="7NszuWQM0uBOrmVhDkAI-85" value="&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;div&gt;&lt;b&gt;&amp;nbsp;trainId: int&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;trainName: string&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;trainNumber: string&lt;/b&gt;&lt;/div&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="7NszuWQM0uBOrmVhDkAI-84">
+          <mxGeometry x="30" y="55" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="7NszuWQM0uBOrmVhDkAI-86" value="&lt;b&gt;+ getTrainJourneys():TrainJourney[]&lt;br&gt;&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="638" y="250" width="220" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="7NszuWQM0uBOrmVhDkAI-87" value="Ticket" style="swimlane;whiteSpace=wrap;html=1;startSize=23;" vertex="1" parent="1">
+          <mxGeometry x="243" y="490" width="220" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="7NszuWQM0uBOrmVhDkAI-88" value="&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;div style=&quot;&quot;&gt;&lt;b&gt;&amp;nbsp;ticketId: int&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&lt;b&gt;&amp;nbsp;user: User&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&lt;b&gt;trainJourney: TrainJourney&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&lt;b&gt;bookingDate: DateTime&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;&lt;b&gt;status: string&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="7NszuWQM0uBOrmVhDkAI-87">
+          <mxGeometry x="5" y="35" width="200" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="7NszuWQM0uBOrmVhDkAI-89" value="&lt;div style=&quot;&quot;&gt;&lt;b&gt;+ getUser(): User&amp;nbsp;&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;b&gt;+ getTrainJourney(): TrainJourney&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;b&gt;+ checkStatus(): string&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;b&gt;+ updateStatus(newStatus: string):&amp;nbsp;&lt;/b&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="243" y="640" width="220" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="7NszuWQM0uBOrmVhDkAI-90" value="ML model" style="swimlane;whiteSpace=wrap;html=1;startSize=23;" vertex="1" parent="1">
+          <mxGeometry x="638" y="488" width="220" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="7NszuWQM0uBOrmVhDkAI-91" value="&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;div style=&quot;&quot;&gt;&lt;div&gt;recommendationId: int&lt;/div&gt;&lt;div&gt;user: User&amp;nbsp;&lt;/div&gt;&lt;div&gt;recommendationText: string&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="7NszuWQM0uBOrmVhDkAI-90">
+          <mxGeometry x="5" y="55" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="7NszuWQM0uBOrmVhDkAI-92" value="&lt;div style=&quot;&quot;&gt;&lt;b&gt;+ getRecommendationText(): string&lt;/b&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="638" y="638" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="7NszuWQM0uBOrmVhDkAI-93" value="" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=1;entryDx=0;entryDy=0;exitX=1;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="458" y="220" as="sourcePoint" />
+            <mxPoint x="638" y="220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7NszuWQM0uBOrmVhDkAI-94" value="" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=1;entryDx=0;entryDy=0;exitX=1.017;exitY=1.005;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="463" y="610.9999999999999" as="sourcePoint" />
+            <mxPoint x="639" y="609.9999999999999" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7NszuWQM0uBOrmVhDkAI-95" value="" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="7NszuWQM0uBOrmVhDkAI-87" target="7NszuWQM0uBOrmVhDkAI-83">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="528" y="480" as="sourcePoint" />
+            <mxPoint x="578" y="430" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7NszuWQM0uBOrmVhDkAI-96" value="" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="7NszuWQM0uBOrmVhDkAI-90" target="7NszuWQM0uBOrmVhDkAI-86">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="528" y="480" as="sourcePoint" />
+            <mxPoint x="578" y="430" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7NszuWQM0uBOrmVhDkAI-97" value="&lt;b&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;Class diagram&lt;/font&gt;&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="490" y="30" width="150" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

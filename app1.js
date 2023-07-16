@@ -2217,6 +2217,7 @@ app.get("/dashboard", function(req, res) {
     var name = id1;
     console.log("id");
     console.log(id1);
+    console.log((id1.mail))
     console.log("KI");
 
     // GETDATA(function(received) {
@@ -2231,7 +2232,7 @@ app.get("/dashboard", function(req, res) {
       { Name: 'Tirunelveli', Code: 'TEN',Dept:'15:45',Arr:'17:15(D+1)',trno:'16353',trname:'Nagercoil Weekly Exp'  },
       { Name: 'Srikakulam', Code: 'CHE',Dept:'16:50',Arr:'09:48(D+1)',trno:'17016',trname:'Vishakha Exp'  }
     ]
-      res.render('dashboard', { data:received,name: name.displayName, mailid: name.displayName + "@gmail.com", data: received });
+      res.render('dashboard', { data:received,name: id1.displayName, mailid: id1.mail, data: received });
   } else {
     console.log("not there")
     res.redirect("/login");

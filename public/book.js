@@ -9,6 +9,7 @@ const openbtns = document.querySelectorAll('.openbtn')
 	pdetails.style.display='none'
 	const closebtn1 = document.querySelector('.closebtn1')
 	const closebtn2 = document.querySelector('.closebtn2')
+	const closebtn3 = document.querySelector('.closebtn3')
 	for (i = 0; i < openbtns.length; i++) {
 		openbtns[i].addEventListener('click', function (event) {
 	var clickedButton = event.target; // Get the clicked button element
@@ -288,4 +289,29 @@ document.getElementById('passengerForm').submit()
 			// bookingCard.style.display = 'none';
 			pdetails.style.display = 'none';
 		
+	})
+	closebtn3.addEventListener('click',()=>{
+		
+			divi.style.opacity = 0.2;
+			divi2.style.opacity = 0.2;
+			document.getElementById('blockT').style.display='none'
+		
+	})
+
+	const blocking = document.querySelector('.blockT')
+	blocking.addEventListener('click',()=>{
+		var currentTime = new Date();
+		var hours = currentTime.getHours();
+		var minutes = currentTime.getMinutes();
+		var seconds = currentTime.getSeconds();
+		document.getElementById('blockP').innerHTML=`Ticket Blocked at ${hours}:${minutes}:${seconds}`
+		document.getElementById('unblock').innerHTML='Unblock Now'
+		document.getElementById('blockP1').innerHTML=`Ticket will unblock at ${hours + 4}:${minutes}:${seconds}`
+		document.getElementById('blockT').style.display='block'
+	})
+	document.getElementById('unblock').addEventListener('click',()=>{
+		document.getElementById('blockP').innerHTML=`Ticket Unblocked`
+		document.getElementById('unblock').innerHTML=''
+		document.getElementById('blockP1').innerHTML=''
+		document.getElementById('blockT').style.display='block'
 	})
