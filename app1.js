@@ -1220,36 +1220,36 @@ app.post('/status2',function(req,res){
         a_day: 1
       }
     ]
-    res.render('status2',{i:0,data:data.data,next:'WARANGAL',nextcode:'WL',nexteta:'00:10'})
-//     const axios = require("axios");
+    // res.render('status2',{i:0,data:data.data,next:'WARANGAL',nextcode:'WL',nexteta:'00:10'})
+    const axios = require("axios");
 
 // //Srujan: dae1c185fbmsh95be9cdf96fd443p13e64ejsndb7c59e57250
 // //Mushtaq: 72c49e350fmshfe8d7384857c73ap1f5007jsn6c6d948921d8
-// const options = {
-//   method: 'GET',
-//   url: 'https://irctc1.p.rapidapi.com/api/v1/liveTrainStatus',
-//   params: {trainNo: req.body.trno, startDay: '0'},
-//   headers: {
-//     'X-RapidAPI-Key': 'dae1c185fbmsh95be9cdf96fd443p13e64ejsndb7c59e57250',
-//     'X-RapidAPI-Host': 'irctc1.p.rapidapi.com'
-//   }
-// };
+const options = {
+  method: 'GET',
+  url: 'https://irctc1.p.rapidapi.com/api/v1/liveTrainStatus',
+  params: {trainNo: req.body.trno, startDay: req.body.date},
+  headers: {
+    'X-RapidAPI-Key': 'dae1c185fbmsh95be9cdf96fd443p13e64ejsndb7c59e57250',
+    'X-RapidAPI-Host': 'irctc1.p.rapidapi.com'
+  }
+};
 
-// axios.request(options).then(function (response) {
-// // 	console.log(response.data);
-// if (response.data.data.message==="Please enter a valid train number"){
-//     res.render('status2',{i:2,num:'',src:'',des:'',current:'',alert:''});
-// }
-//   console.log('Current station name: '+response.data.data.current_station_name.slice(0,-1)+'\nCurrent Station Code:'+response.data.data.current_station_code)
+axios.request(options).then(function (response) {
+// 	console.log(response.data);
+if (response.data.data.message==="Please enter a valid train number"){
+    res.render('status2',{i:2,num:'',src:'',des:'',current:'',alert:''});
+}
+  console.log('Current station name: '+response.data.data.current_station_name.slice(0,-1)+'\nCurrent Station Code:'+response.data.data.current_station_code)
 
-// res.render('status2',{i:0,data:response.data.data,next:response.data.data.upcoming_stations[1].station_name,nextcode:response.data.data.upcoming_stations[1].station_code,nexteta:response.data.data.upcoming_stations[1].eta})
-//   }).catch(function (error) {
-// 	console.error(error);
-//     res.render('status2',{i:2,num:'',src:'',des:'',current:'',alert:''});
+res.render('status2',{i:0,data:response.data.data,next:response.data.data.upcoming_stations[1].station_name,nextcode:response.data.data.upcoming_stations[1].station_code,nexteta:response.data.data.upcoming_stations[1].eta})
+  }).catch(function (error) {
+	console.error(error);
+    res.render('status2',{i:2,num:'',src:'',des:'',current:'',alert:''});
 
-    // res.send('invalid train number 1');
-// });
-//   res.send('invalid train number');
+    res.send('invalid train number 1');
+});
+  // res.send('invalid train number');
 })
 var ticket="";
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -1957,28 +1957,28 @@ app.post('/book',async function(req,res){
     }
   ]
 }
-res.render('book',{data:data.data,src:req.body.src,dst:req.body.dst,day:dayNames[day],date:req.body.date});
+// res.render('book',{data:data.data,src:req.body.src,dst:req.body.dst,day:dayNames[day],date:req.body.date});
     // res.render('book')
 
-//     const axios = require("axios");
+    const axios = require("axios");
 
-// const options = {
-//   method: 'GET',
-//   url: 'https://irctc1.p.rapidapi.com/api/v2/trainBetweenStations',
-//   params: {fromStationCode: req.body.src, toStationCode: req.body.dst},
-//   headers: {
-//     'X-RapidAPI-Key': 'dae1c185fbmsh95be9cdf96fd443p13e64ejsndb7c59e57250',
-//     'X-RapidAPI-Host': 'irctc1.p.rapidapi.com'
-//   }
-// };
+const options = {
+  method: 'GET',
+  url: 'https://irctc1.p.rapidapi.com/api/v2/trainBetweenStations',
+  params: {fromStationCode: req.body.src, toStationCode: req.body.dst},
+  headers: {
+    'X-RapidAPI-Key': 'dae1c185fbmsh95be9cdf96fd443p13e64ejsndb7c59e57250',
+    'X-RapidAPI-Host': 'irctc1.p.rapidapi.com'
+  }
+};
 
-// axios.request(options).then(function (response) {
-// 	// console.log(response.data);
+axios.request(options).then(function (response) {
+	// console.log(response.data);
   
-//     res.render('book',{data:response.data.data,src:req.body.src,dst:req.body.dst,day:dayNames[day]});
-//   }).catch(function (error) {
-//     console.error(error);
-//   });
+    res.render('book',{data:response.data.data,src:req.body.src,dst:req.body.dst,day:dayNames[day],date:req.body.date});
+  }).catch(function (error) {
+    console.error(error);
+  });
 })
 /////////////////////////////////////////////////////////////////////////////////////////
 app.post("/pnr",function(req,res){
