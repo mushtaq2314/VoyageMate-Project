@@ -1,6 +1,6 @@
 # VoyageMate
 
-![VoyageMate Logo](public/train2.png) <!-- Add a logo if you have one -->
+![VoyageMate Logo](public/screenshot.png) <!-- Add a logo if you have one -->
 
 ## Overview
 
